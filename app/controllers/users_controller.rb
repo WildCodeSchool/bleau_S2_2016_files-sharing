@@ -10,6 +10,7 @@ class UsersController < ApplicationController
   # GET /users/1
   # GET /users/1.json
   def show
+    @user.media << Medium.find(1)
   end
 
   # GET /users/new
