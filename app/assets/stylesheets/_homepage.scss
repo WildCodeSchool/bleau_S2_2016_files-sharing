@@ -45,12 +45,14 @@
 	{
 		background-color: rgb(184, 192, 230);
 		display: flex;
-		justify-content: space-between;
+		justify-content: center;
+		flex-flow: row wrap;
 
 	  	div
 	  	{
 			margin: 30px;
-	  		width: 400px;
+			width: 25%;
+	  		min-width: 150px;
 	  		background-color: rgba(117, 144, 146, 0.5);
 			border-radius: 30px;
 			text-align: center;
