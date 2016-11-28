@@ -1,0 +1,15 @@
+<header id="header">
+
+	<%= image_tag "logo.jpeg", alt: "logo" %>
+	
+	<div id="connection">
+		<%= form_tag("/login", method: "post") do %>
+	  	<%= label_tag(:login, "Login:") %>
+	  	<%= text_field_tag(:login) %>
+	  	<%= label_tag(:password, "Password:") %>
+	  	<%= password_field_tag(:password) %>
+	  	<%= submit_tag("Enter") %>
+		<% end %>
+	</div>
+
+</header>

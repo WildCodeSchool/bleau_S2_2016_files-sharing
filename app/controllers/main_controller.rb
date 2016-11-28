@@ -1,6 +1,6 @@
 class MainController < ApplicationController
 
-  def index
+  def homepage
   end
 
 end

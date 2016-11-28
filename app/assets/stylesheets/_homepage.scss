@@ -1,0 +1,61 @@
+#homepage
+{
+
+	#inscription-wrapper
+	{
+	height: 80vh;
+	background-image: url("/assets/homepage.jpg");
+	background-size: cover;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+
+
+		#inscription
+		{
+			width: 400px;
+			background-color: rgba(117, 144, 146, 0.5);
+			border-radius: 30px;
+			display: flex;
+	  		flex-direction: column;
+	  		justify-content: center;
+	  		align-items: center;
+
+	  		*{
+	  			display: block;
+	  		}
+			
+			p
+			{
+				margin-top: 20px;
+			}
+
+	  		p, h1{
+	  			margin-bottom:20px;
+	  		}
+
+	  		label, input {
+	  			margin-bottom: 10px;
+	  		}
+		}
+	}
+
+	#presentation
+	{
+		background-color: rgb(184, 192, 230);
+		display: flex;
+		justify-content: space-between;
+
+	  	div
+	  	{
+			margin: 30px;
+	  		width: 400px;
+	  		background-color: rgba(117, 144, 146, 0.5);
+			border-radius: 30px;
+			text-align: center;
+	  	}
+	}
+
+}
+
