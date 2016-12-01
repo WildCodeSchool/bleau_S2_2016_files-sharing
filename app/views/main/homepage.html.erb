@@ -5,16 +5,16 @@
 <div id="homepage">
 	<div id="inscription-wrapper">
 		<div id="inscription">
-			<p>Pas encore inscrit ? Rejoignez-nous en 2 clicks !</p>
+			<p>Pas encore inscrit ? Rejoignez-nous en 2 clics !</p>
 			<h1>Inscription</h1>
 			<%= form_tag("/subscribe", method: "post") do %>
-		  	<%= label_tag(:email, "Your email") %>
-		  	<%= text_field_tag(:email) %>
-		  	<%= label_tag(:username, "Your user name") %>
-		  	<%= text_field_tag(:username) %>
-		  	<%= label_tag(:password, "Your password") %>
-		  	<%= password_field_tag(:password) %>
-		  	<%= submit_tag("Enter") %>
+			  	<%= label_tag(:email, "Your email") %>
+			  	<%= text_field_tag(:email) %>
+			  	<%= label_tag(:username, "Your user name") %>
+			  	<%= text_field_tag(:username) %>
+			  	<%= label_tag(:password, "Your password") %>
+			  	<%= password_field_tag(:password) %>
+			  	<%= submit_tag("Enter") %>
 		  	<% end %>
 		</div>
 	</div>

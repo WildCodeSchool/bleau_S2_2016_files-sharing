@@ -1,19 +1,42 @@
 <header id="header">
 
-	<%= image_tag "logo.jpeg", alt: "logo" %>
-	
+<%= image_tag "logo.jpeg", alt: "logo" %>
+
+<% if user_signed_in? %>
+
+  <div>
+  	<p>Vous êtes connecté, bienvenu <%= current_user.name %></p>
+  </div>
+  <div>
+  	<%= link_to('Se déconnecter', destroy_user_session_path, :method => :delete) %>        
+  </div>
+
+<% else %>
+
 	<div id="connection">
-		<%= form_tag("/login", method: "post") do %>
-		<div>
-		  	<%= label_tag(:login, "Login:") %>
-		  	<%= text_field_tag(:login) %>
-		</div>
-		<div>
-		  	<%= label_tag(:password, "Password:") %>
-		  	<%= password_field_tag(:password) %>
-	  	</div>
-	  	<%= submit_tag("Enter") %>
+		<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+		  	<div class="field">
+			    <%= f.label :email %><br />
+			    <%= f.email_field :email, autofocus: true %>
+			</div>
+
+			<div class="field">
+			    <%= f.label :password %><br />
+			    <%= f.password_field :password, autocomplete: "off" %>
+			</div>
+
+			<% if devise_mapping.rememberable? -%>
+				<div class="field">
+				    <%= f.check_box :remember_me %>
+				    <%= f.label :remember_me %>
+				</div>
+			<% end -%>	
+
+			<div class="actions">
+			    <%= f.submit "Log in" %>
+			</div>
 		<% end %>
 	</div>
 
+<% end %>
 </header>
