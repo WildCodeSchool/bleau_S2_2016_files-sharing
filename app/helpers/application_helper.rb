@@ -1,3 +1,4 @@
+# faire fonctionner les formulaire de devise en copier/coller sur n'importe quelle vue du site
 module ApplicationHelper
 
   def resource_name

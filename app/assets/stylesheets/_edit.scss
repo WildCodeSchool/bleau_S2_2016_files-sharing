@@ -1,0 +1,16 @@
+#edit
+{
+	background-color: rgb(184, 192, 230);
+	text-align:center;
+	padding: 20px 0 20px 0;
+	display: flex;
+	justify-content: center;
+
+	> div
+	{
+		background-color: rgba(117, 144, 146, 0.5);
+		width: 40%;
+		min-width: 300px;
+		border-radius: 30px;
+	}
+}

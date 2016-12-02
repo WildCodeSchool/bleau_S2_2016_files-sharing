@@ -6,7 +6,7 @@
 	justify-content: space-between;
 	align-items: center;
 
-	img
+	#logo
 	{
 		max-height: 100px;
 	}
@@ -19,5 +19,11 @@
 		{
 			display: inline-block;
 		}
+	}
+
+	#connected
+	{
+		text-align: center;
+		margin-right: 10px;
 	}
 }

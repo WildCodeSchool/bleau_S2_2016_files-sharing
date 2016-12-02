@@ -2,16 +2,39 @@
 <%= render "header" %>
 
 <!-- Body -->
-<div id="login">
-	<%= form_tag("/search", method: "get", id: 'searchbox') do |f| %>
-		<!-- arg1: nom, arg2: valeur par défaut, arg3+: autres options -->
-		<%= text_field_tag :search, nil, placeholder: 'search', id: 'search' %>
-		<!-- arg1: nom, arg2: choix/valeur, obligatoirement array d'array, arg3+: autres options -->
-		<%= select_tag :select, options_for_select([['All', 'All'], ["My files", "My files"], ['My groups', 'My groups']]), selected: 'All' %>
-		<!-- arg1: nom, arg2+: autres options -->
-		<%= submit_tag "Go", id: 'submit' %>
-	<% end %>
-</div>
 
+<!-- Barre de recherche -->
+<%= form_tag("/search", method: "get", id: 'searchbox') do |f| %>
+	<!-- arg1: nom, arg2: valeur par défaut, arg3+: autres options -->
+	<%= text_field_tag :search, nil, placeholder: 'search', id: 'search' %>
+	<!-- arg1: nom, arg2: choix/valeur, obligatoirement array d'array, arg3+: autres options -->
+	<%= select_tag :select, options_for_select([['All', 'All'], ["My files", "My files"], ['My groups', 'My groups']]), selected: 'All' %>
+	<!-- arg1: nom, arg2+: autres options -->
+	<%= submit_tag "Go", id: 'submit' %>
+<% end %>
+
+<!-- Corps du site avec visuel des groupes et fichiers -->
+<div id="login">
+	<div id="my_groups">
+		<p>My groups</p>
+		<!-- visualisation des groupes auxquels l'utilisateur courant appartient -->
+		...............
+		<!-- lien vers l'ajout de nouveaux groupes -->
+		<%= form_tag("/search_groups", method: "get", id: 'searchgroups') do |f| %>
+			<%= text_field_tag :search, nil, placeholder: 'search', id: 'search' %>
+			<%= submit_tag "Ask to join", id: 'submit' %>
+		<% end %>
+	</div>
+	<div id="files_visualisation">
+		<div>
+			<p>Files I uploaded</p>
+			.......................
+		</div>
+		<div>
+			<p>Files shared with me</p>
+			........................
+		</div>
+	</div>
+</div>
 <!-- Footer -->
 <%= render "footer" %>

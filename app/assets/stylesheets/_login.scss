@@ -1,5 +1,60 @@
 #login{
 	background-color: rgb(184, 192, 230);
-	padding-top: 1px;
-	min-height: 300px;
+	padding-bottom: 10px;
+	display: flex;
+
+	// fenêtre de visualisation et d'ajout de groupes
+	#my_groups
+	{
+		background-color: white;
+		border-radius: 30px;
+		margin: 10px 10px 0 10px;
+		width: 15%;
+		min-width: 150px;
+		text-align: center;
+
+		p
+		{
+			margin: 10px;
+			color: #272143;
+			font-weight: bold
+		}
+
+		#searchgroups
+		{
+			#search{
+				width: 80%;
+			}
+		}
+	}
+
+	// visualisation des fichiers accessibles
+	#files_visualisation
+	{
+		margin: 10px 10px 0 0;
+		width: 85%;
+		
+		> div
+		{
+			border-radius: 30px;
+			background-color: white;
+			min-height: 300px;
+			padding-top: 10px;
+			
+			p
+			{
+				margin: 0 0 0 20px;
+				color: #272143;
+				font-weight: bold
+			}
+		}
+
+		:first-child
+		{
+			margin-bottom: 10px;
+		}
+
+	}
+
+
 }

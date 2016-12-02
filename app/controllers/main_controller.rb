@@ -1,14 +1,11 @@
 class MainController < ApplicationController
 
-	before_action :authenticate_user!, except: [ :homepage, :subscribe ]
+	before_action :authenticate_user!, except: [ :homepage ]
 
 	def homepage
 	end
 
 	def login
-	end
-
-	def subscribe
 	end
 
 end
