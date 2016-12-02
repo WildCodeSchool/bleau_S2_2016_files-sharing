@@ -1,4 +1,4 @@
-#homepage
+#homepage, #subscription
 {
 
 	#inscription-wrapper
@@ -22,22 +22,17 @@
 	  		justify-content: center;
 	  		align-items: center;
 
-	  		*{
-	  			display: block;
+	  		> *
+	  		{
+				margin-top: 10px;
 	  		}
-			
-			p
+
+			form
 			{
-				margin-top: 20px;
+				display: flex;
+				align-items: center;
+				flex-direction: column;
 			}
-
-	  		p, h1{
-	  			margin-bottom:20px;
-	  		}
-
-	  		label, input {
-	  			margin-bottom: 10px;
-	  		}
 		}
 	}
 
