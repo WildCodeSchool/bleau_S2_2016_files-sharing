@@ -25,10 +25,11 @@ class MediaController < ApplicationController
   # POST /media.json
   def create
     @medium = Medium.new(medium_params)
+    @medium.user = current_user
 
     respond_to do |format|
       if @medium.save
-        format.html { redirect_to @medium, notice: 'Medium was successfully created.' }
+        format.html { redirect_to root_path, notice: 'Medium was successfully created.' }
         format.json { render :show, status: :created, location: @medium }
       else
         format.html { render :new }
@@ -69,6 +70,6 @@ class MediaController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def medium_params
-      params.require(:medium).permit(:name, :file, :user_id)
+      params.require(:medium).permit(:name, :file)
     end
 end

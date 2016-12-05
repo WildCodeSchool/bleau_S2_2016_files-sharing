@@ -32,15 +32,19 @@
 			<!-- affichage des fichiers que l'utilisateur a uploadé -->
 				<% @my_files.each do |medium| %>
 					<div class="file">
-						<div>
-							<%= image_tag medium.file.thumb, alt: "medium.name", class: "image_file" %>
+						<% if medium.file.content_type.start_with? 'image' %>
+							<%= image_tag medium.file.thumb, alt: medium.name, class: "image_file" %>
+						<% elsif medium.file.content_type.start_with? 'video' %>
+							<%= video_tag medium.file.thumb, alt: medium.name, class: "video_file", controls: true %>
+						<% end %>
+						<div class="links">
+							<%= link_to 'Update', edit_medium_path(medium) %>
+							<%= link_to 'Destroy', medium, method: :delete, data: { confirm: 'Are you sure?' } %>
 						</div>
-						<%= link_to 'Update', edit_medium_path(medium) %>
-						<%= link_to 'Destroy', medium, method: :delete, data: { confirm: 'Are you sure?' } %>
 					</div>
 				<% end %>
 			</div>
-			<p>
+			<%= button_to 'Add a file', new_medium_path, method: :get %>
 		</div>
 		<div id="shared_with_me">
 			<p>Files shared with me</p>

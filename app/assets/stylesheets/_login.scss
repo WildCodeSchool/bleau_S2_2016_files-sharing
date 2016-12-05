@@ -64,21 +64,30 @@
 
 				.file
 				{
-					margin: 10px 5px 10px 5px;
-					width: 130px;
+					margin: 5px;
+					display: flex;
+					justify-content: space-between;
+					flex-direction: column;
 					padding: 5px;
 					border-radius: 10px;
-					display: flex;
-					flex-direction: column;
-					align-items: center;
 					background-color: LightSlateGray;
+
+					div
+					{
+						display: flex;
+						flex-direction: column;
+						align-items: center;
+					}
 				}
 			}
 
-
+			input
+			{
+				margin: 10px;
+				background-color: LightSlateGray;
+				color: white;
+				font-weight: bold;
+			}
 		}
-
 	}
-
-
 }

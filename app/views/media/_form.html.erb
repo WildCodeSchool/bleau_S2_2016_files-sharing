@@ -21,11 +21,6 @@
     <%= f.file_field :file %>
   </div>
 
-  <div class="field">
-    <%= f.label :user_id %>
-    <%= f.collection_select :user_id, User.order(:name), :id, :name, include_blank: true %>
-  </div>
-
   <div class="actions">
     <%= f.submit %>
   </div>
