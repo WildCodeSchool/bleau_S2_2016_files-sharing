@@ -26,13 +26,27 @@
 		<% end %>
 	</div>
 	<div id="files_visualisation">
-		<div>
+		<div id="my_files">
 			<p>Files I uploaded</p>
-			.......................
+			<div id="uploaded">
+			<!-- affichage des fichiers que l'utilisateur a uploadé -->
+				<% @my_files.each do |medium| %>
+					<div class="file">
+						<div>
+							<%= image_tag medium.file.thumb, alt: "medium.name", class: "image_file" %>
+						</div>
+						<%= link_to 'Update', edit_medium_path(medium) %>
+						<%= link_to 'Destroy', medium, method: :delete, data: { confirm: 'Are you sure?' } %>
+					</div>
+				<% end %>
+			</div>
+			<p>
 		</div>
-		<div>
+		<div id="shared_with_me">
 			<p>Files shared with me</p>
-			........................
+			<!-- affichage des fichiers partagés avec l'utilisateur, groupe + individuel -->
+			.....................................
+			.....................................
 		</div>
 	</div>
 </div>

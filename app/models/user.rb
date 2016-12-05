@@ -5,7 +5,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :trackable, :validatable
 
     # relations avec les autres tables
-	has_many :files, class_name: "Medium", dependent: :destroy
+	has_many :my_files, class_name: "Medium", dependent: :destroy
 	has_many :shared_with_user
 	has_many :user_in_group
 	has_many :media, through: :shared_with_user, dependent: :destroy

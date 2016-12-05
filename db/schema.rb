@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161205090537) do
+ActiveRecord::Schema.define(version: 20161205094314) do
 
   create_table "groups", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "name"
@@ -19,11 +19,11 @@ ActiveRecord::Schema.define(version: 20161205090537) do
   end
 
   create_table "media", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.string   "nom"
     t.integer  "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string   "file"
+    t.string   "name"
     t.index ["user_id"], name: "index_media_on_user_id", using: :btree
   end
 
