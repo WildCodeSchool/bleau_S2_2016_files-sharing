@@ -28,6 +28,7 @@
 	<div id="files_visualisation">
 		<div id="my_files">
 			<p>Files I uploaded</p>
+			<%= link_to 'All my files', medium_index_path %>
 			<div id="uploaded">
 			<!-- affichage des fichiers que l'utilisateur a uploadé -->
 				<% @my_files.each do |medium| %>
