@@ -27,7 +27,15 @@ gem 'jbuilder', '~> 2.5'
 # gem 'bcrypt', '~> 3.1.7'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
-gem 'mysql2'
+
+# mise en place de la gem pg pour bdd heroku
+group :development do
+  gem 'mysql2'
+end
+group :production do
+  gem 'pg'
+end
+
 gem 'devise'
 gem 'carrierwave', '>= 1.0.0.rc', '< 2.0'
 gem 'mini_magick'
