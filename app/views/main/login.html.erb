@@ -38,6 +38,7 @@
 							<%= video_tag medium.file.thumb, alt: medium.name, class: "video_file", controls: true %>
 						<% end %>
 						<div class="links">
+							<%= link_to 'Download', download_path(path: medium.file), method: :post %>
 							<%= link_to 'Update', edit_medium_path(medium) %>
 							<%= link_to 'Destroy', medium, method: :delete, data: { confirm: 'Are you sure?' } %>
 						</div>
