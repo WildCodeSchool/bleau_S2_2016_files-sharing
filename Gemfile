@@ -29,13 +29,8 @@ gem 'jbuilder', '~> 2.5'
 # gem 'capistrano-rails', group: :development
 
 # mise en place de la gem pg pour bdd heroku
-group :development do
-  gem 'mysql2'
-end
-group :production do
-  gem 'pg'
-end
-
+gem 'pg'
+gem 'mysql2'
 gem 'devise'
 gem 'carrierwave', '>= 1.0.0.rc', '< 2.0'
 gem 'mini_magick'
