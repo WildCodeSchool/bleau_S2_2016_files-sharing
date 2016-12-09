@@ -24,6 +24,6 @@ Rails.application.routes.draw do
 
   # Redirige toute url inconnue vers root
   # CAUTION: This line will mask routing errors
-  get "*path", to: redirect('/')
+  # get "*path", to: redirect('/')
 
 end
