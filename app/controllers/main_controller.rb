@@ -5,8 +5,9 @@ class MainController < ApplicationController
 	def homepage
 	end
 
-	def login
+	def logged_homepage
 		@media = current_user.media
+		@owned_groups = Group.where("master_id = ?", current_user.entity.id)
 	end
 
 	def download

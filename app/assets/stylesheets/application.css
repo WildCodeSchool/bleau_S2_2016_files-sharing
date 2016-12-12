@@ -14,6 +14,11 @@
  *= require_self
  */
 
+ /*
+ * Ajout des images pour les ui jquery
+ *= require jquery-ui
+ */
+
 html *{
 	margin: 0;
 	font-family: cursive;

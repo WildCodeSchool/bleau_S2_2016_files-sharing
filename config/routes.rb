@@ -2,7 +2,7 @@ Rails.application.routes.draw do
 
   # Permet de diriger vers main/login.html.erb si l'utilisateur est connecté (utile si utilisateur souhaite svg son mdp)
   authenticated :user do
-    root to: 'main#login'
+    root to: 'main#logged_homepage'
   end
 
   # Si utilisateur non connecté, dirige vers main/homepage.html.erb
@@ -15,15 +15,11 @@ Rails.application.routes.draw do
 
   # other routes
   get 'homepage' => 'main#homepage', as: :homepage
-  get 'login' => 'main#login', as: :login
+  get 'login' => 'main#logged_homepage', as: :login
   post 'login/download' => 'main#download', as: :download
   
   # CRUD
   resources :groups
   resources :media
-
-  # Redirige toute url inconnue vers root
-  # CAUTION: This line will mask routing errors
-  # get "*path", to: redirect('/')
 
 end

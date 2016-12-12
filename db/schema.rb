@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161212082704) do
+ActiveRecord::Schema.define(version: 20161212121639) do
 
   create_table "entities", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "name"
@@ -22,7 +22,9 @@ ActiveRecord::Schema.define(version: 20161212082704) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer  "entity_id"
+    t.integer  "master_id"
     t.index ["entity_id"], name: "index_groups_on_entity_id", using: :btree
+    t.index ["master_id"], name: "index_groups_on_master_id", using: :btree
   end
 
   create_table "media", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -32,6 +34,16 @@ ActiveRecord::Schema.define(version: 20161212082704) do
     t.string   "file"
     t.string   "name"
     t.index ["user_id"], name: "index_media_on_user_id", using: :btree
+  end
+
+  create_table "shared_withs", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer  "medium_id"
+    t.integer  "entity_id"
+    t.string   "rights"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["entity_id"], name: "index_shared_withs_on_entity_id", using: :btree
+    t.index ["medium_id"], name: "index_shared_withs_on_medium_id", using: :btree
   end
 
   create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -64,6 +76,9 @@ ActiveRecord::Schema.define(version: 20161212082704) do
   end
 
   add_foreign_key "groups", "entities"
+  add_foreign_key "groups", "entities", column: "master_id"
   add_foreign_key "media", "users"
+  add_foreign_key "shared_withs", "entities"
+  add_foreign_key "shared_withs", "media"
   add_foreign_key "users", "entities"
 end

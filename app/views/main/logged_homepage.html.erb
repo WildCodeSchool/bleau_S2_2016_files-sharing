@@ -17,13 +17,20 @@
 <div id="login">
 	<div id="my_groups">
 		<p>My groups</p>
+		<!-- visualisation des groupes appartenants à l'utilisateur courant -->
+		<p>Groups I owned</p>
+			<% @owned_groups.each do |og| %>
+			<%= link_to og.entity.name, og %>
+		<% end %>
 		<!-- visualisation des groupes auxquels l'utilisateur courant appartient -->
-		...............
+		...............................
 		<!-- lien vers l'ajout de nouveaux groupes -->
 		<%= form_tag("/search_groups", method: "get", id: 'searchgroups') do |f| %>
 			<%= text_field_tag :search, nil, placeholder: 'search', id: 'search' %>
 			<%= submit_tag "Ask to join", id: 'submit' %>
 		<% end %>
+		<!-- lien vers la création d'un groupe -->
+		<%= button_to 'Create a new group', new_group_path, method: :get %>
 	</div>
 	<div id="files_visualisation">
 		<div id="my_files">

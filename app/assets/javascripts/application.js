@@ -14,3 +14,9 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require_tree .
+// attention à n'inclure que les ui utiliséés in fine
+//= require jquery-ui
+
+$(function() {
+  $('#search').datepicker();
+});
