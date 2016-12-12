@@ -1,6 +1,7 @@
 class Group < ApplicationRecord
-	has_many :user_in_group
-	has_many :shared_with_group
-	has_many :users, through: :user_in_group
-	has_many :media, through: :shared_with_group
+	belongs_to :entity
+	has_many :users_in_groups
+	has_many :users, through: :users_in_groups
+
+	accepts_nested_attributes_for :entity
 end

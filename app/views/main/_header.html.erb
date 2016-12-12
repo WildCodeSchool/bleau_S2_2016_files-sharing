@@ -4,7 +4,7 @@
 
 	<% if user_signed_in? %>
 		<div>
-			<p>Welcome <%= current_user.name %>, have a nice day !</p>
+			<p>Welcome <%= current_user.entity.name %>, have a nice day !</p>
 		</div>
 		<div id="connected">
 			<%= link_to image_tag("profil.png", alt: "logo", id: "profil"), edit_user_registration_path %>

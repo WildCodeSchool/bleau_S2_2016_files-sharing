@@ -4,24 +4,19 @@
 	#inscription-wrapper
 	{
 	height: 80vh;
-	background-image: url('<%= asset_path('homepage.jpg')%>');
+	// background-image: url('<%= asset_path('homepage.jpg')%>');
 	background-size: cover;
 	display: flex;
-	flex-direction: column;
 	justify-content: center;
 	align-items: center;
 
 
 		#inscription
 		{
-			width: 400px;
-			background-color: rgba(117, 144, 146, 0.5);
-			border-radius: 30px;
-			display: flex;
-	  		flex-direction: column;
-	  		justify-content: center;
-	  		align-items: center;
-
+			width: 300px;
+			background-color: rgb(117, 144, 146);
+			text-align: center;
+			
 	  		> *
 	  		{
 				margin-top: 10px;
@@ -34,24 +29,6 @@
 				flex-direction: column;
 			}
 		}
-	}
-
-	#presentation
-	{
-		background-color: rgb(184, 192, 230);
-		display: flex;
-		justify-content: center;
-		flex-flow: row wrap;
-
-	  	div
-	  	{
-			margin: 30px;
-			width: 25%;
-	  		min-width: 150px;
-	  		background-color: rgba(117, 144, 146, 0.5);
-			border-radius: 30px;
-			text-align: center;
-	  	}
 	}
 
 }

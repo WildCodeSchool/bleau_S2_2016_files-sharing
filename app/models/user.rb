@@ -5,9 +5,11 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :trackable, :validatable
 
     # relations avec les autres tables
-	has_many :my_files, class_name: "Medium", dependent: :destroy
-	has_many :shared_with_user
-	has_many :user_in_group
-	has_many :media, through: :shared_with_user, dependent: :destroy
-	has_many :groups, through: :user_in_group
+    belongs_to :entity
+    has_many :media
+    has_many :users_in_groups
+	has_many :groups, through: :users_in_groups
+
+	accepts_nested_attributes_for :entity
+	
 end
