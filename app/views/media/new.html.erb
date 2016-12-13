@@ -1,5 +1,11 @@
-<h1>New Medium</h1>
+<!-- Header -->
+<%= render "main/header" %>
 
-<%= render 'form', medium: @medium %>
-
-<%= link_to 'Return to your homepage', root_path %>
+<!-- body -->
+<div id="new_medium">
+	<h3>New Medium</h3>
+	<%= render 'form', medium: @medium %>
+	<%= link_to 'Return to your homepage', root_path %>
+</div>
+<!-- Footer -->
+<%= render "main/footer" %>

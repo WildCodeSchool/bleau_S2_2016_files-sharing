@@ -15,6 +15,7 @@ class MediaController < ApplicationController
   # GET /media/new
   def new
     @medium = Medium.new
+    @groups = helpers.groups
   end
 
   # GET /media/1/edit
@@ -70,6 +71,6 @@ class MediaController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def medium_params
-      params.require(:medium).permit(:name, :file)
+      params.require(:medium).permit(:name, :file, :visible_to_all?)
     end
 end

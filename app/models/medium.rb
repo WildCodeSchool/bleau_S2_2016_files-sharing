@@ -5,4 +5,5 @@ class Medium < ApplicationRecord
   	belongs_to :user
   	has_many :shared_with
   	has_many :entities, through: :shared_with
+
 end

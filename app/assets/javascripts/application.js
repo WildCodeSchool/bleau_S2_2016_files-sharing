@@ -17,6 +17,17 @@
 // attention à n'inclure que les ui utiliséés in fine
 //= require jquery-ui
 
-$(function() {
-  $('#search').datepicker();
-});
+function addInputRights(cbox)
+{
+	if (cbox.checked)
+	{
+	    var input = document.createElement("input");
+	    input.type = "select";
+	    input.id = 'test'
+	    cbox.appendChild(input);
+	}
+  	else 
+  	{
+  		document.getElementById('canard').remove();
+	}
+}

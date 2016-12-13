@@ -20,7 +20,23 @@
     <%= f.label :file %>
     <%= f.file_field :file %>
   </div>
+  
+  <div class="visible_to_all">
+    <%= f.label 'Can everybody see my new stuff ?' %>
+    <%= f.select :visible_to_all?, [['True', true],['False', false]] %>
+  </div>
 
+  <p>Do you want to share your baby with your groups? how much do you trust them ?</p>
+
+  <div class="create_medium_groups">
+    <% @groups.each do |g| %>
+      <div>
+        <%= check_box_tag g.entity.name, g.entity.id, false, onclick: 'addInputRights(this)' %>
+        <%= label_tag g.entity.name %>
+      </div>
+    <% end %>
+  </div> 
+  
   <div class="actions">
     <%= f.submit %>
   </div>
