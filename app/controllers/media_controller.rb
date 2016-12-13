@@ -34,9 +34,17 @@ class MediaController < ApplicationController
   # POST /media
   # POST /media.json
   def create
+    # set des paramètres pour le média
     @medium = Medium.new(medium_params)
     @medium.user = current_user
-    logger.debug
+
+    # set groupes ayant accès au fichier
+    groups = helpers.groups
+    groups.each do |g|
+      if params.has_key?(g.entity.id.to_s)
+        @medium.entities << Entity.find(g.entity.id)
+      end
+    end
 
     respond_to do |format|
       if @medium.save
