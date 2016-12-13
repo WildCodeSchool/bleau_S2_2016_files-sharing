@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161212145911) do
+ActiveRecord::Schema.define(version: 20161213122258) do
 
   create_table "entities", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "name"
@@ -29,11 +29,11 @@ ActiveRecord::Schema.define(version: 20161212145911) do
 
   create_table "media", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "user_id"
-    t.datetime "created_at",                      null: false
-    t.datetime "updated_at",                      null: false
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
     t.string   "file"
     t.string   "name"
-    t.boolean  "visible_to_all?", default: false
+    t.boolean  "visible_to_all", default: false
     t.index ["user_id"], name: "index_media_on_user_id", using: :btree
   end
 

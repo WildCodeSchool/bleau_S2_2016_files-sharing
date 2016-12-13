@@ -18,12 +18,12 @@ class MediaController < ApplicationController
     @groups = helpers.groups
 
     # passage des id des checkboxs du formulaire pour le js
-    groups_names_tab = []
+    groups_id_tab = []
     @groups.each do |g|
-      groups_names_tab << g.entity.name
+      groups_id_tab << g.entity.id
     end
-    @groups_names_string = '#' + groups_names_tab.join(', #')
-    # fin de passage de vriable au js
+    @groups_id_string = '#' + groups_id_tab.join(', #')
+    # fin de passage de variable au js
 
   end
 
@@ -36,6 +36,7 @@ class MediaController < ApplicationController
   def create
     @medium = Medium.new(medium_params)
     @medium.user = current_user
+    logger.debug
 
     respond_to do |format|
       if @medium.save
@@ -80,6 +81,6 @@ class MediaController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def medium_params
-      params.require(:medium).permit(:name, :file, :visible_to_all?)
+      params.require(:medium).permit(:name, :file, :visible_to_all)
     end
 end

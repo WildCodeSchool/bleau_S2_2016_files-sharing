@@ -23,17 +23,16 @@
   
   <div class="visible_to_all">
     <%= f.label 'Can everybody see my new stuff ?' %>
-    <%= f.select :visible_to_all?, [['True', true],['False', false]] %>
+    <%= f.select :visible_to_all, [['True', true],['False', false]] %>
   </div>
 
   <p>Do you want to share your baby with your groups? how much do you trust them ?</p>
 
   <div class="create_medium_groups">
-    <% groups_names = [] %>
     <% @groups.each do |g| %>
       <div>
         <!-- checkbox arg1 = nom, arg2= checked, arg3= options -->
-        <%= check_box_tag g.entity.name, g.entity.id, false, id: g.entity.name %>
+        <%= check_box_tag g.entity.id, g.entity.id, false, id: g.entity.id %>
         <%= label_tag g.entity.name %>
       </div>
     <% end %>
@@ -45,16 +44,18 @@
 <% end %>
 
 <%= javascript_tag type: 'text/javascript' do %>
-  $( document ).on('turbolinks:load', function() {
-    $('<%= @groups_names_string %>').on('click', function(){
-      if($(this).is(':checked'))
-      {
-        $(this).parent().append('<select name="Canard" class="canard" type="select"><option value="read">Read</option><option value="write">Write</option></select>');
-      }
-      else
-      {
-        $(this).next().next().remove();
-      }
-    });
+  var groups_names_string = '<%= @groups_id_string %>'
+
+  $(groups_names_string).on('click', function(){
+    if($(this).is(':checked'))
+    {
+      $(this).parent().append('<select><option value="read">Read</option><option value="write">Read + Write</option></select>');
+      $(this).next().next().attr('name', $(this).attr('name')+'_rights');
+    }
+    else
+    {
+      $(this).next().next().remove();
+    }
   });
+
 <% end %>

@@ -40,7 +40,9 @@
 			<!-- affichage des fichiers que l'utilisateur a uploadé -->
 				<% @owned_media.each do |medium| %>
 					<div class="file">
-						<% if medium.file.content_type.start_with? 'image' %>
+						<% if medium.file.content_type == nil %>
+							<p>Oups, we got an unexpected error</p>
+						<% elsif medium.file.content_type.start_with? 'image' %>
 							<%= image_tag medium.file.thumb, alt: medium.name, class: "image_file" %>
 						<% elsif medium.file.content_type.start_with? 'video' %>
 							<%= video_tag medium.file.thumb, alt: medium.name, class: "video_file", controls: true %>
