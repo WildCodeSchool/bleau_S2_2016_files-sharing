@@ -29,9 +29,11 @@
   <p>Do you want to share your baby with your groups? how much do you trust them ?</p>
 
   <div class="create_medium_groups">
+    <% groups_names = [] %>
     <% @groups.each do |g| %>
       <div>
-        <%= check_box_tag g.entity.name, g.entity.id, false, onclick: 'addInputRights(this)' %>
+        <!-- checkbox arg1 = nom, arg2= checked, arg3= options -->
+        <%= check_box_tag g.entity.name, g.entity.id, false, id: g.entity.name %>
         <%= label_tag g.entity.name %>
       </div>
     <% end %>
@@ -40,4 +42,19 @@
   <div class="actions">
     <%= f.submit %>
   </div>
+<% end %>
+
+<%= javascript_tag type: 'text/javascript' do %>
+  $( document ).on('turbolinks:load', function() {
+    $('<%= @groups_names_string %>').on('click', function(){
+      if($(this).is(':checked'))
+      {
+        $(this).parent().append('<select name="Canard" class="canard" type="select"><option value="read">Read</option><option value="write">Write</option></select>');
+      }
+      else
+      {
+        $(this).next().next().remove();
+      }
+    });
+  });
 <% end %>

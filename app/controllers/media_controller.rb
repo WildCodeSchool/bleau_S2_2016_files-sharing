@@ -16,6 +16,15 @@ class MediaController < ApplicationController
   def new
     @medium = Medium.new
     @groups = helpers.groups
+
+    # passage des id des checkboxs du formulaire pour le js
+    groups_names_tab = []
+    @groups.each do |g|
+      groups_names_tab << g.entity.name
+    end
+    @groups_names_string = '#' + groups_names_tab.join(', #')
+    # fin de passage de vriable au js
+
   end
 
   # GET /media/1/edit
