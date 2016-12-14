@@ -28,10 +28,15 @@
 
   <p>Do you want to share your baby with your groups? how much do you trust them ?</p>
 
+  <div class="field">
+    <!-- arg1= méthode, arg2= , arg3= checked, arg4= options -->
+    <%= f.collection_check_boxes(:entity_ids, @groups_entities, :id, :name) %>
+  </div>
+  
   <div class="create_medium_groups">
-    <% @groups.each do |g| %>
+    <% @in_groups.each do |g| %>
       <div>
-        <!-- checkbox arg1 = nom, arg2= checked, arg3= options -->
+        <!-- checkbox arg1= nom, arg2= valeur, arg3= checked, arg4= options -->
         <%= check_box_tag g.entity.id, g.entity.id, false, id: g.entity.id %>
         <%= label_tag g.entity.name %>
       </div>
@@ -44,9 +49,9 @@
 <% end %>
 
 <%= javascript_tag type: 'text/javascript' do %>
-  var groups_names_string = '<%= @groups_id_string %>'
+  var groups_id_string = '<%= @groups_id_string %>'
 
-  $(groups_names_string).on('click', function(){
+  $(groups_id_string).on('click', function(){
     if($(this).is(':checked'))
     {
       $(this).parent().append('<select><option value="read">Read</option><option value="write">Read + Write</option></select>');

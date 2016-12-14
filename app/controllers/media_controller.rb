@@ -1,6 +1,19 @@
 class MediaController < ApplicationController
   before_action :set_medium, only: [:show, :edit, :update, :destroy]
 
+  def all_groups
+    return helpers.owned_groups + current_user.groups
+  end
+
+  # passage des id des checkboxs du formulaire pour le js
+  def to_js(arr)
+    tab = []
+    arr.each do |a|
+      tab << a.entity.id
+    end
+    @str = '#' + tab.join(', #')
+  end
+
   # GET /media
   # GET /media.json
   def index
@@ -15,20 +28,26 @@ class MediaController < ApplicationController
   # GET /media/new
   def new
     @medium = Medium.new
-    @groups = helpers.groups
-
-    # passage des id des checkboxs du formulaire pour le js
-    groups_id_tab = []
-    @groups.each do |g|
-      groups_id_tab << g.entity.id
+    @in_groups = current_user.groups
+    @groups_entities = []
+    @in_groups.each do |g|
+      @groups_entities << g.entity
     end
-    @groups_id_string = '#' + groups_id_tab.join(', #')
-    # fin de passage de variable au js
 
+    @owned_groups = helpers.owned_groups
+    @groups_id_string = to_js(@in_groups)
   end
 
   # GET /media/1/edit
   def edit
+        @in_groups = current_user.groups
+    @groups_entities = []
+    @in_groups.each do |g|
+      @groups_entities << g.entity
+    end
+
+    @owned_groups = helpers.owned_groups
+    @groups_id_string = to_js(@in_groups)
   end
 
   # POST /media
@@ -37,14 +56,6 @@ class MediaController < ApplicationController
     # set des paramètres pour le média
     @medium = Medium.new(medium_params)
     @medium.user = current_user
-
-    # set groupes ayant accès au fichier
-    groups = helpers.groups
-    groups.each do |g|
-      if params.has_key?(g.entity.id.to_s)
-        @medium.entities << Entity.find(g.entity.id)
-      end
-    end
 
     respond_to do |format|
       if @medium.save
@@ -60,6 +71,7 @@ class MediaController < ApplicationController
   # PATCH/PUT /media/1
   # PATCH/PUT /media/1.json
   def update
+    
     respond_to do |format|
       if @medium.update(medium_params)
         format.html { redirect_to @medium, notice: 'Medium was successfully updated.' }
@@ -89,6 +101,6 @@ class MediaController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def medium_params
-      params.require(:medium).permit(:name, :file, :visible_to_all)
+      params.require(:medium).permit(:name, :file, :visible_to_all, entity_ids: [])
     end
 end
