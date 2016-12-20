@@ -6,9 +6,6 @@ class MainController < ApplicationController
 	end
 
 	def logged_homepage
-		@owned_groups = helpers.owned_groups
-		@owned_media = current_user.media
-		@groups = current_user.groups
 	end
 
 	def download

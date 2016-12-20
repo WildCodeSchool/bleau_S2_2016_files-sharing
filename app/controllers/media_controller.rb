@@ -1,10 +1,6 @@
 class MediaController < ApplicationController
   before_action :set_medium, only: [:show, :edit, :update, :destroy]
 
-  def all_groups
-    return helpers.owned_groups + current_user.groups
-  end
-
   # passage des id des checkboxs du formulaire pour le js
   def to_js(arr)
     tab = []
@@ -29,6 +25,11 @@ class MediaController < ApplicationController
   def new
     @medium = Medium.new
     @in_groups = current_user.groups
+
+    @in_groups.each do |shared|
+      @medium.shared_withs.build
+    end
+
     @groups_entities = []
     @in_groups.each do |g|
       @groups_entities << g.entity
@@ -90,7 +91,7 @@ class MediaController < ApplicationController
     respond_to do |format|
       format.html { redirect_to media_url, notice: 'Medium was successfully destroyed.' }
       format.json { head :no_content }
-    end
+  end
   end
 
   private

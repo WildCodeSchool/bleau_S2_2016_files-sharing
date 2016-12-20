@@ -1,3 +1,5 @@
+<%= @medium.shared_withs.inspect %>
+
 <%= form_for(medium) do |f| %>
   <% if medium.errors.any? %>
     <div id="error_explanation">
@@ -22,15 +24,16 @@
   </div>
   
   <div class="visible_to_all">
-    <%= f.label 'Can everybody see my new stuff ?' %>
+    <%= f.label 'Can everybody see this file ?' %>
     <%= f.select :visible_to_all, [['True', true],['False', false]] %>
   </div>
 
-  <p>Do you want to share your baby with your groups? how much do you trust them ?</p>
+  <p>Do you want to share this file with the following groups ?</p>
 
   <div class="field">
-    <!-- arg1= méthode, arg2= , arg3= checked, arg4= options -->
-    <%= f.collection_check_boxes(:entity_ids, @groups_entities, :id, :name) %>
+      <% f.fields_for :shared_withs, Shared_with.new do |s| %>
+        <%= s.select :rights, [['True', true],['False', false]] %>
+      <% end %>
   </div>
   
   <div class="create_medium_groups">

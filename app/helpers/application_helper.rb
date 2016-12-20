@@ -12,7 +12,7 @@ module ApplicationHelper
   # création d'une nouvelle entité si la resource appelée est vierge
   def resource
     @resource ||= User.new
-    @resource.entity = Entity.new if @resource.entity.blank?
+    @resource.entity ||= Entity.new
     return @resource
   end
 
