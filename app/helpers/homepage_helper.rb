@@ -1,14 +1,20 @@
 module HomepageHelper
 
-	def owned_groups
-		Group.where("master_id = ?", current_user.entity.id)
+	def owned_groups_entities
+		owned = Group.where("master_id = ?", current_user.entity.id)
+		entities = []
+		owned.each do |g|
+			entities << g.entity
+		end
+		return entities
 	end
 
-	def in_groups
-		current_user.groups
+	def in_groups_entities
+		entities = []
+		current_user.groups.each do |g|
+			entities << g.entity
+		end
+		return entities
 	end
 
-	def my_media
-		current_user.media
-	end
 end

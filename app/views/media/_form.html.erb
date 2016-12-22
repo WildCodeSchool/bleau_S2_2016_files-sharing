@@ -31,17 +31,17 @@
   <p>Do you want to share this file with the following groups ?</p>
 
   <div class="field">
-      <% f.fields_for :shared_withs, Shared_with.new do |s| %>
+      <% f.fields_for :shared_withs do |s| %>
         <%= s.select :rights, [['True', true],['False', false]] %>
       <% end %>
   </div>
   
   <div class="create_medium_groups">
-    <% @in_groups.each do |g| %>
+    <% in_groups_entities.each do |g| %>
       <div>
         <!-- checkbox arg1= nom, arg2= valeur, arg3= checked, arg4= options -->
-        <%= check_box_tag g.entity.id, g.entity.id, false, id: g.entity.id %>
-        <%= label_tag g.entity.name %>
+        <%= check_box_tag g.id, g.id, false, id: g.id %>
+        <%= label_tag g.name %>
       </div>
     <% end %>
   </div> 

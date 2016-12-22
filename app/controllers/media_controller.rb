@@ -24,19 +24,8 @@ class MediaController < ApplicationController
   # GET /media/new
   def new
     @medium = Medium.new
-    @in_groups = current_user.groups
-
-    @in_groups.each do |shared|
-      @medium.shared_withs.build
-    end
-
-    @groups_entities = []
-    @in_groups.each do |g|
-      @groups_entities << g.entity
-    end
-
-    @owned_groups = helpers.owned_groups
-    @groups_id_string = to_js(@in_groups)
+    @medium.shared_withs.build
+    @groups_id_string = to_js(current_user.groups)
   end
 
   # GET /media/1/edit

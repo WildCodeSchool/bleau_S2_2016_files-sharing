@@ -19,13 +19,13 @@
 		<p>My groups</p>
 		<!-- visualisation des groupes appartenants à l'utilisateur courant -->
 		<p>Groups I own</p>
-		<% owned_groups.each do |og| %>
-			<%= link_to og.entity.name, og %>
+		<% owned_groups_entities.each do |og| %>
+			<%= link_to og.name, og.group %>
 		<% end %>
 		<!-- visualisation des groupes auxquels l'utilisateur courant appartient -->
 		<p>Groups I'm in</p>
-		<% in_groups.each do |og| %>
-			<%= link_to og.entity.name, og %>
+		<% in_groups_entities.each do |og| %>
+			<%= link_to og.name, og.group %>
 		<% end %>
 		<!-- lien vers l'ajout de nouveaux groupes -->
 		<%= form_tag("/search_groups", method: "get", id: 'searchgroups') do |f| %>
@@ -41,7 +41,7 @@
 			<%= link_to 'All my files', media_path %>
 			<div id="uploaded">
 			<!-- affichage des fichiers que l'utilisateur a uploadé -->
-				<% my_media.each do |medium| %>
+				<% current_user.media.each do |medium| %>
 					<div class="file">
 						<% if medium.file.content_type == nil %>
 							<p>Oups, we got an unexpected error</p>
