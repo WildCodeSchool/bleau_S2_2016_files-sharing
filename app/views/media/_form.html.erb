@@ -1,6 +1,4 @@
-<%= @medium.shared_withs.inspect %>
-
-<%= form_for(medium) do |f| %>
+<%= form_for @medium do |f| %>
   <% if medium.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(medium.errors.count, "error") %> prohibited this medium from being saved:</h2>
@@ -30,22 +28,34 @@
 
   <p>Do you want to share this file with the following groups ?</p>
 
-  <div class="field">
-      <% f.fields_for :shared_withs do |s| %>
-        <%= s.select :rights, [['True', true],['False', false]] %>
-      <% end %>
-  </div>
-  
-  <div class="create_medium_groups">
-    <% in_groups_entities.each do |g| %>
+  <div class="collection">
+    <%= f.collection_check_boxes :entity_ids, in_groups_entities, :id, :name do |collection| %>
       <div>
-        <!-- checkbox arg1= nom, arg2= valeur, arg3= checked, arg4= options -->
-        <%= check_box_tag g.id, g.id, false, id: g.id %>
-        <%= label_tag g.name %>
+        <%= collection.check_box %>
+        <%= collection.label %>
+        <%= f.fields_for :shared_withs do |shared| %>
+          <%= shared.select :rights, options_for_select([['Read only', 'R'], ['Read and modify', 'RW']]) %>
+          <%= shared.hidden_field :entity_id, value: collection.object.id %>
+        <% end %>           
       </div>
     <% end %>
-  </div> 
+  </div>
+
+  <div class="collection">
+    <% in_groups_entities.each do |entity| %>
+      <%= f.fields_for :shared_withs do |shared| %>
+        <div>
+          <%= shared.check_box :selected, checked: !shared.object.id.blank? %>
+          <%= shared.label entity.name %>
+          <%= shared.select :rights, options_for_select([['Read only', 'R'], ['Read and modify', 'RW']]) %>
+          <%= shared.hidden_field :entity_id, value: entity.id %>
+        </div>
+      <% end %>           
+    <% end %>
+  </div>
   
+  <%= f.hidden_field :user_id, value: current_user.id %>
+
   <div class="actions">
     <%= f.submit %>
   </div>

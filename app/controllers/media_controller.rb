@@ -1,15 +1,6 @@
 class MediaController < ApplicationController
   before_action :set_medium, only: [:show, :edit, :update, :destroy]
 
-  # passage des id des checkboxs du formulaire pour le js
-  def to_js(arr)
-    tab = []
-    arr.each do |a|
-      tab << a.entity.id
-    end
-    @str = '#' + tab.join(', #')
-  end
-
   # GET /media
   # GET /media.json
   def index
@@ -24,13 +15,12 @@ class MediaController < ApplicationController
   # GET /media/new
   def new
     @medium = Medium.new
-    @medium.shared_withs.build
-    @groups_id_string = to_js(current_user.groups)
+    @medium.shared_withs.build({medium: @medium})
   end
 
   # GET /media/1/edit
   def edit
-        @in_groups = current_user.groups
+    @in_groups = current_user.groups
     @groups_entities = []
     @in_groups.each do |g|
       @groups_entities << g.entity
@@ -43,9 +33,7 @@ class MediaController < ApplicationController
   # POST /media
   # POST /media.json
   def create
-    # set des paramètres pour le média
     @medium = Medium.new(medium_params)
-    @medium.user = current_user
 
     respond_to do |format|
       if @medium.save
@@ -91,6 +79,6 @@ class MediaController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def medium_params
-      params.require(:medium).permit(:name, :file, :visible_to_all, entity_ids: [])
+      params.require(:medium).permit(:user_id, :name, :file, :visible_to_all, entity_ids: [], shared_withs_attributes: [:rights, :entity_id, :selected])
     end
 end
