@@ -43,7 +43,7 @@
 
   <div class="collection">
     <% in_groups_entities.each do |entity| %>
-      <%= f.fields_for :shared_withs do |shared| %>
+      <%= f.fields_for :shared_withs, SharedWith.new do |shared| %>
         <div>
           <%= shared.check_box :selected, checked: !shared.object.id.blank? %>
           <%= shared.label entity.name %>

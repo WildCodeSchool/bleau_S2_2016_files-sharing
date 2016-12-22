@@ -15,19 +15,7 @@ class MediaController < ApplicationController
   # GET /media/new
   def new
     @medium = Medium.new
-    @medium.shared_withs.build({medium: @medium})
-  end
-
-  # GET /media/1/edit
-  def edit
-    @in_groups = current_user.groups
-    @groups_entities = []
-    @in_groups.each do |g|
-      @groups_entities << g.entity
-    end
-
-    @owned_groups = helpers.owned_groups
-    @groups_id_string = to_js(@in_groups)
+    @medium.shared_withs.build
   end
 
   # POST /media
@@ -46,10 +34,18 @@ class MediaController < ApplicationController
     end
   end
 
+  # GET /media/1/edit
+  def edit
+    @in_groups = current_user.groups
+    @groups_entities = []
+    @in_groups.each do |g|
+      @groups_entities << g.entity
+    end
+  end
+
   # PATCH/PUT /media/1
   # PATCH/PUT /media/1.json
   def update
-    
     respond_to do |format|
       if @medium.update(medium_params)
         format.html { redirect_to @medium, notice: 'Medium was successfully updated.' }
@@ -79,6 +75,6 @@ class MediaController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def medium_params
-      params.require(:medium).permit(:user_id, :name, :file, :visible_to_all, entity_ids: [], shared_withs_attributes: [:rights, :entity_id, :selected])
+      params.require(:medium).permit(:user_id, :name, :file, :visible_to_all, entity_ids: [], shared_withs_attributes: [:rights, :entity_id, :medium_id, :selected])
     end
 end
