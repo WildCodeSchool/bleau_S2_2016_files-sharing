@@ -1,3 +1,5 @@
+<%= @to_js.inspect %>
+
 <%= form_for @medium do |f| %>
   <% if medium.errors.any? %>
     <div id="error_explanation">
@@ -26,54 +28,22 @@
     <%= f.select :visible_to_all, [['True', true],['False', false]] %>
   </div>
 
-  <p>Do you want to share this file with the following groups ?</p>
+  <p>Do you want to share this file with some of the following groups you are related to ?</p>
 
   <div class="collection">
-    <%= f.collection_check_boxes :entity_ids, in_groups_entities, :id, :name do |collection| %>
-      <div>
-        <%= collection.check_box %>
-        <%= collection.label %>
-        <%= f.fields_for :shared_withs do |shared| %>
-          <%= shared.select :rights, options_for_select([['Read only', 'R'], ['Read and modify', 'RW']]) %>
-          <%= shared.hidden_field :entity_id, value: collection.object.id %>
-        <% end %>           
-      </div>
-    <% end %>
-  </div>
-
-  <div class="collection">
-    <% in_groups_entities.each do |entity| %>
-      <%= f.fields_for :shared_withs, SharedWith.new do |shared| %>
+      <%= f.fields_for :shared_withs do |shared| %>
         <div>
-          <%= shared.check_box :selected, checked: !shared.object.id.blank? %>
-          <%= shared.label entity.name %>
+          <%= shared.check_box :selected, checked: !shared.object.id.blank?, id: shared.object.entity.name %>
+          <%= shared.label shared.object.entity.name %>
           <%= shared.select :rights, options_for_select([['Read only', 'R'], ['Read and modify', 'RW']]) %>
-          <%= shared.hidden_field :entity_id, value: entity.id %>
-        </div>
-      <% end %>           
+          <%= shared.hidden_field :entity_id, value: shared.object.entity.id %>
+        </div>        
     <% end %>
   </div>
-  
-  <%= f.hidden_field :user_id, value: current_user.id %>
 
+  <%= f.hidden_field :user_id, value: current_user.id %>
+  
   <div class="actions">
     <%= f.submit %>
   </div>
-<% end %>
-
-<%= javascript_tag type: 'text/javascript' do %>
-  var groups_id_string = '<%= @groups_id_string %>'
-
-  $(groups_id_string).on('click', function(){
-    if($(this).is(':checked'))
-    {
-      $(this).parent().append('<select><option value="read">Read</option><option value="write">Read + Write</option></select>');
-      $(this).next().next().attr('name', $(this).attr('name')+'_rights');
-    }
-    else
-    {
-      $(this).next().next().remove();
-    }
-  });
-
 <% end %>

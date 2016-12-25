@@ -16,7 +16,7 @@ Rails.application.routes.draw do
   # other routes
   get 'homepage' => 'main#homepage', as: :homepage
   get 'login' => 'main#logged_homepage', as: :login
-  post 'login/download' => 'main#download', as: :download
+  get 'login/download' => 'main#download', as: :download
   
   # CRUD
   resources :groups

@@ -1,3 +1,5 @@
+<%= @test %>
+
 <!-- Header -->
 <%= render "header" %>
 
@@ -43,6 +45,7 @@
 			<!-- affichage des fichiers que l'utilisateur a uploadé -->
 				<% current_user.media.each do |medium| %>
 					<div class="file">
+						<%= medium.name %>
 						<% if medium.file.content_type == nil %>
 							<p>Oups, we got an unexpected error</p>
 						<% elsif medium.file.content_type.start_with? 'image' %>
@@ -51,7 +54,7 @@
 							<%= video_tag medium.file.thumb, alt: medium.name, class: "video_file", controls: true %>
 						<% end %>
 						<div class="links">
-							<%= link_to 'Download', download_path(path: medium.file), method: :post %>
+							<%= link_to 'Download', download_path(path: medium.file, medium: medium) %>
 							<%= link_to 'Update', edit_medium_path(medium) %>
 							<%= link_to 'Destroy', medium, method: :delete, data: { confirm: 'Are you sure?' } %>
 						</div>

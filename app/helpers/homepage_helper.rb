@@ -17,4 +17,12 @@ module HomepageHelper
 		return entities
 	end
 
+	def all_groups_entities
+		all = owned_groups_entities
+		in_groups_entities.each do |entity|
+			all << entity
+		end
+		return all
+	end
+
 end
