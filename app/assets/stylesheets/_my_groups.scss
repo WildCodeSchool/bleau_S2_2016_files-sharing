@@ -1,0 +1,22 @@
+// fenêtre de visualisation et d'ajout de groupes
+#my_groups
+{
+	margin: 10px 10px 0 10px;
+	width: 15%;
+	min-width: 150px;
+	text-align: center;
+
+	p
+	{
+		margin: 10px;
+		color: #272143;
+		font-weight: bold
+	}
+
+	#searchgroups
+	{
+		#search{
+			width: 80%;
+		}
+	}
+}

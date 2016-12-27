@@ -1,0 +1,23 @@
+<!-- Header -->
+<%= render "header" %>
+
+<!-- Body -->
+
+<!-- Barre de recherche -->
+<%= render "searchbox" %>
+
+<!-- Corps du site avec visuel des groupes et fichiers -->
+<div id="search_file">
+	<%= render 'my_groups' %>
+	<div id="files_visualisation">
+		<p>Results for "<%= params[:search] %>"</p>
+		<div id="search_results">
+			<!-- affichage des fichiers que l'utilisateur a uploadé -->
+				<% @media.each do |medium| %>
+					<%= render 'file_display', medium: medium %>
+				<% end %>
+			</div>
+	</div>
+</div>
+<!-- Footer -->
+<%= render "footer" %>

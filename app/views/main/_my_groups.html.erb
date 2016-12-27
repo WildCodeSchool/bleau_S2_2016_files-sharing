@@ -1,0 +1,20 @@
+<div id="my_groups">
+	<p>My groups</p>
+	<!-- visualisation des groupes appartenants à l'utilisateur courant -->
+	<p>Groups I own</p>
+	<% owned_groups_entities.each do |og| %>
+		<%= link_to og.name, og.group %>
+	<% end %>
+	<!-- visualisation des groupes auxquels l'utilisateur courant appartient -->
+	<p>Groups I'm in</p>
+	<% in_groups_entities.each do |og| %>
+		<%= link_to og.name, og.group %>
+	<% end %>
+	<!-- lien vers l'ajout de nouveaux groupes -->
+	<%= form_tag("/search_groups", method: "get", id: 'searchgroups') do |f| %>
+		<%= text_field_tag :search, nil, placeholder: 'search', id: 'search' %>
+		<%= submit_tag "Ask to join", id: 'submit' %>
+	<% end %>
+	<!-- lien vers la création d'un groupe -->
+	<%= button_to 'Create a new group', new_group_path, method: :get %>
+</div>

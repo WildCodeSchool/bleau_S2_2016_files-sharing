@@ -1,0 +1,59 @@
+#searchbox
+{
+	display: flex;
+	justify-content: center;
+
+	#search
+	{
+		width: 70%;
+	}
+}
+
+#login{
+	padding-bottom: 10px;
+	display: flex;
+
+	// visualisation des fichiers accessibles
+	#files_visualisation
+	{
+		margin: 10px 10px 0 0;
+		width: 85%;
+		
+		> div
+		{
+			padding-top: 10px;
+			
+			p
+			{
+				margin: 0 0 0 20px;
+				color: #272143;
+				font-weight: bold
+			}
+		}
+
+		#my_files
+		{
+			margin-bottom: 10px;
+
+			a
+			{
+				text-decoration: none;
+				color: blue;
+			}
+
+			#uploaded
+			{
+				display: flex;
+
+			}
+
+			input
+			{
+				margin: 10px;
+				background-color: LightSlateGray;
+				color: white;
+				font-weight: bold;
+			}
+		}
+	}
+}

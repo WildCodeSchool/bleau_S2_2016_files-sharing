@@ -15,10 +15,8 @@ class MediaController < ApplicationController
   # GET /media/new
   def new
     @medium = Medium.new
-    @to_js = []
     helpers.all_groups_entities.each do |e|
       @medium.shared_withs.build({entity_id: e.id})
-      @to_js << e.name
     end
     @users = User.all
   end

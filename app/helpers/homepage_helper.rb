@@ -1,7 +1,7 @@
 module HomepageHelper
 
 	def owned_groups_entities
-		owned = Group.where("master_id = ?", current_user.entity.id)
+		owned = Group.my_groups(current_user)
 		entities = []
 		owned.each do |g|
 			entities << g.entity
@@ -9,9 +9,10 @@ module HomepageHelper
 		return entities
 	end
 
-	def in_groups_entities
+	def in_groups_entities(user = nil)
+		user ||= current_user
 		entities = []
-		current_user.groups.each do |g|
+		user.groups.each do |g|
 			entities << g.entity
 		end
 		return entities

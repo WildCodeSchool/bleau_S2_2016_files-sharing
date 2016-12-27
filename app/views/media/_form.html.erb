@@ -1,5 +1,3 @@
-<%= @to_js.inspect %>
-
 <%= form_for @medium do |f| %>
   <% if medium.errors.any? %>
     <div id="error_explanation">
@@ -33,7 +31,7 @@
   <div class="collection">
       <%= f.fields_for :shared_withs do |shared| %>
         <div>
-          <%= shared.check_box :selected, checked: !shared.object.id.blank?, id: shared.object.entity.name %>
+          <%= shared.check_box :selected, checked: !shared.object.id.blank? %>
           <%= shared.label shared.object.entity.name %>
           <%= shared.select :rights, options_for_select([['Read only', 'R'], ['Read and modify', 'RW']]) %>
           <%= shared.hidden_field :entity_id, value: shared.object.entity.id %>

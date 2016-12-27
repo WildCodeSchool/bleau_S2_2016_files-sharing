@@ -1,0 +1,26 @@
+#searchbox
+{
+	display: flex;
+	justify-content: center;
+
+	#search
+	{
+		width: 70%;
+	}
+}
+
+#search_file{
+	padding-bottom: 10px;
+	display: flex;
+
+	// visualisation des fichiers accessibles
+	#files_visualisation
+	{
+		margin: 10px 0 10px 10px;
+
+		#search_results
+		{
+			display: flex;
+		}
+	}
+}
