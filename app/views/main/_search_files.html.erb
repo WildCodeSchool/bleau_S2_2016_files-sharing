@@ -1,0 +1,7 @@
+<div id="files_visualisation">
+	<p>Results for "<%= params[:search] %>"</p>
+	<!-- affichage des fichiers que l'utilisateur a uploadé -->
+	<% @media.each do |medium| %>
+		<%= render 'file_display', medium: medium %>
+	<% end %>
+</div>

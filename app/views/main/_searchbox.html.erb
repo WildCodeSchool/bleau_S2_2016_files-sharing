@@ -1,8 +1,0 @@
-<%= form_tag(search_file_path, method: "get", id: 'searchbox') do |f| %>
-	<!-- arg1: nom, arg2: valeur par défaut, arg3+: autres options -->
-	<%= text_field_tag :search, nil, placeholder: 'search', id: 'search' %>
-	<!-- arg1: nom, arg2: choix/valeur, obligatoirement array d'array, arg3+: autres options -->
-	<%= select_tag :select, options_for_select([['All', 'All'], ["My files", "My files"], ['Shared by my groups', 'Shared by groups'], ['shared with me specifically', 'Me'], ["All files shared with me", "All files downloadable"]]), selected: 'All' %>
-	<!-- arg1: nom, arg2+: autres options -->
-	<%= submit_tag "Go", id: 'submit' %>
-<% end %>

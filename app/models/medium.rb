@@ -45,10 +45,10 @@ class Medium < ApplicationRecord
 
   	# chercher dans les fichiers partagés avec le current user par groupe ou individuellement
   	def self.search_all_files_downloadable(current_user, search)
-  		a = search_my_files(current_user, search)
-  		b = search_files_shared_with_me(current_user, search)
-  		c = search_files_shared_by_my_groups(current_user, search)
-		(a+b+c).uniq
+  		mine = search_my_files(current_user, search)
+  		shared = search_files_shared_with_me(current_user, search)
+  		shared_by_groups = search_files_shared_by_my_groups(current_user, search)
+		(mine+shared+shared_by_groups).uniq
   	end
   	
 end

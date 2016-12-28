@@ -17,7 +17,8 @@ Rails.application.routes.draw do
   get 'homepage' => 'main#homepage', as: :homepage
   get 'login' => 'main#logged_homepage', as: :login
   get 'login/download' => 'main#download', as: :download
-  get 'search/file' => 'main#search_file', as: :search_file
+  get 'search_files' => 'main#search_files', as: :search_files
+  get 'home' => 'main#home', as: :home_modal
   
   # CRUD
   resources :groups

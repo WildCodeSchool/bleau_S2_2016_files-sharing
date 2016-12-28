@@ -3,12 +3,16 @@
 	<!-- visualisation des groupes appartenants à l'utilisateur courant -->
 	<p>Groups I own</p>
 	<% owned_groups_entities.each do |og| %>
-		<%= link_to og.name, og.group %>
+		<div>
+			<%= link_to og.name, og.group %>
+		</div>
 	<% end %>
 	<!-- visualisation des groupes auxquels l'utilisateur courant appartient -->
 	<p>Groups I'm in</p>
 	<% in_groups_entities.each do |og| %>
-		<%= link_to og.name, og.group %>
+		<div>
+			<%= link_to og.name, og.group %>
+		</div>
 	<% end %>
 	<!-- lien vers l'ajout de nouveaux groupes -->
 	<%= form_tag("/search_groups", method: "get", id: 'searchgroups') do |f| %>

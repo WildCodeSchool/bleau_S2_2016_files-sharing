@@ -1,32 +1,23 @@
 <!-- Header -->
 <%= render "header" %>
 
-<!-- Body -->
+<%= link_to 'Home', home_modal_path, remote: true %>
 
-<!-- Barre de recherche -->
-<%= render "searchbox" %>
+<!-- Barre de recherche de fichiers-->
+<%= form_tag(search_files_path, method: "get", id: 'searchbox', remote: true) do |f| %>
+	<!-- arg1: nom, arg2: valeur par défaut, arg3+: autres options -->
+	<%= text_field_tag :search, nil, placeholder: 'search', id: 'search' %>
+	<!-- arg1: nom, arg2: choix/valeur, obligatoirement array d'array, arg3+: autres options -->
+	<%= select_tag :select, options_for_select([['All', 'All'], ["My files", "My files"], ['Shared by my groups', 'Shared by groups'], ['shared with me specifically', 'Me'], ["All files downloadable", "All files downloadable"]]), selected: 'All' %>
+	<!-- arg1: nom, arg2+: autres options -->
+	<%= submit_tag "Go", id: 'submit' %>
+<% end %>
 
 <!-- Corps du site avec visuel des groupes et fichiers -->
 <div id="login">
 	<%= render 'my_groups' %>
-	<div id="files_visualisation">
-		<div id="my_files">
-			<p>Files I uploaded</p>
-			<%= link_to 'All my files', media_path %>
-			<div id="uploaded">
-			<!-- affichage des fichiers que l'utilisateur a uploadé -->
-				<% current_user.media.each do |medium| %>
-					<%= render 'file_display', medium: medium %>
-				<% end %>
-			</div>
-			<%= button_to 'Add a file', new_medium_path, method: :get %>
-		</div>
-		<div id="shared_with_me">
-			<p>Files shared with me</p>
-			<!-- affichage des fichiers partagés avec l'utilisateur, groupe + individuel -->
-			.....................................
-			.....................................
-		</div>
+	<div id="main_div">
+		<%= render "home" %>
 	</div>
 </div>
 <!-- Footer -->

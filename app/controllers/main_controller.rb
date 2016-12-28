@@ -9,7 +9,7 @@ class MainController < ApplicationController
 	def logged_homepage
 	end
 
-	def search_file
+	def search_files
 		if params[:select] == "All"
 			@media = Medium.search_all(params[:search])
 		elsif params[:select] == "My files"
@@ -21,6 +21,9 @@ class MainController < ApplicationController
 		elsif params[:select] == "All files downloadable"
 			@media = Medium.search_all_files_downloadable(current_user, params[:search])
 		end
+	end
+
+	def home
 	end
 
 	def download
