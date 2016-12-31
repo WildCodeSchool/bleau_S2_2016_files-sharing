@@ -16,8 +16,10 @@ class User < ApplicationRecord
 		User.joins(:entity).where('users.id != ? AND name REGEXP ?', current_user.id, "^#{term}") 
 	end
 
-	#devise passe un argument au constructeur, on est obligé d'en prévoir au moins 1
-	def initialize(resource = nil)
+	# rails passe en argument du constructeur les paramètres par le biais de la méthode create.
+	# Ici on est obligé d'utilier ||= pour la création de l'entité pour ne pas effacer les paramètres
+	# déjà set sur l'entité en question dans le cas de params != nil
+	def initialize(params = nil)
 		super
 		self.entity ||= Entity.new
 	end
