@@ -1,6 +1,14 @@
 class MediaController < ApplicationController
   before_action :set_medium, only: [:show, :edit, :update, :destroy]
 
+  def search_users
+    @users = []
+    User.search_all_except(current_user, params[:term]).each do |u|
+      @users << u.entity
+    end
+    render json: @users.map(&:name)
+  end
+
   # GET /media
   # GET /media.json
   def index
@@ -18,7 +26,13 @@ class MediaController < ApplicationController
     helpers.all_groups_entities.each do |e|
       @medium.shared_withs.build({entity_id: e.id})
     end
+    @shared_with_groups = @medium.shared_withs
     @users = User.all
+
+    respond_to do |format|
+      format.html
+      format.json { @users = User.all }
+    end
   end
 
   # POST /media

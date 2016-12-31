@@ -2,7 +2,7 @@
 # ici on renvoie vers homepage au lieu de la vue sign_in de devise
 class CustomFailure < Devise::FailureApp
   def redirect_url
-    :homepage
+    :new_user_registration
   end
 
   def respond

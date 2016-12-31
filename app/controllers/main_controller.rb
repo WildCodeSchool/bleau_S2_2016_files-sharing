@@ -1,12 +1,9 @@
 class MainController < ApplicationController
 
-	before_action :authenticate_user!, except: [ :homepage]
+	before_action :authenticate_user!
 	before_action :is_user_authorized, only: [:download]
 
-	def homepage
-	end
-
-	def logged_homepage
+	def index
 	end
 
 	def search_files
@@ -32,7 +29,7 @@ class MainController < ApplicationController
 			send_file path
 		else
 			flash[:alert] = "there is a problem with this file, you can't donwload it"
-			render "main/logged_homepage"
+			render "main/index"
 		end
 	end
 
@@ -51,7 +48,7 @@ class MainController < ApplicationController
 
 		if !has_file && !through_group && !through_individual
 			flash[:alert] = "You can't download this file"
-			render "main/logged_homepage"
+			render "main/index"
 		end
 	end
 

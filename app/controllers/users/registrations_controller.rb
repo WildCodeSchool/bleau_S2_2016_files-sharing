@@ -14,7 +14,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
     params.require(:user).permit(:email, :password, :password_confirmation, :current_password, entity_attributes: [:name])
   end
 
-  # GET /resource/sign_up
+  #GET /resource/sign_up
   # def new
   #   super
   # end

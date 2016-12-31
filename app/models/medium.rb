@@ -9,11 +9,7 @@ class Medium < ApplicationRecord
   	accepts_nested_attributes_for :shared_withs, reject_if: lambda{ |a| a[:selected] == '0'}
 
   	# chercher dans tous les fichiers du site
-  	def self.search_all(search)
-  		Medium
-  			.where("name REGEXP ?", "^#{search}")
-  			.order("created_at DESC")
-  	end
+    scope :search_all, -> (search) { where("name REGEXP ?", "^#{search}") }
 
   	# chercher dans tous les fichiers uploadé par le current user
   	def self.search_my_files(current_user, search)
@@ -48,7 +44,7 @@ class Medium < ApplicationRecord
   		mine = search_my_files(current_user, search)
   		shared = search_files_shared_with_me(current_user, search)
   		shared_by_groups = search_files_shared_by_my_groups(current_user, search)
-		(mine+shared+shared_by_groups).uniq
+		  (mine+shared+shared_by_groups).uniq
   	end
   	
 end

@@ -8,8 +8,69 @@
   </head>
 
   <body>
+
+    <!-- HEADER -->
+    <header id="header">
+      <%= image_tag "logo.jpeg", alt: "logo", id: "logo" %>
+      <% if user_signed_in? %>
+        <div>
+          <p>Welcome <%= current_user.entity.name %>, have a nice day !</p>
+        </div>
+        <div id="connected">
+          <%= link_to image_tag("profil.png", alt: "logo", id: "profil"), edit_user_registration_path %>
+          <div>
+            <%= link_to('Se déconnecter', destroy_user_session_path, :method => :delete) %>        
+          </div>
+        </div>
+      <% else %>
+        <div id="connection">
+          <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+              <div class="field">
+                <%= f.label :email %><br />
+                <%= f.email_field :email, autofocus: true %>
+            </div>
+            <div class="field">
+                <%= f.label :password %><br />
+                <%= f.password_field :password, autocomplete: "off" %>
+            </div>
+            <% if devise_mapping.rememberable? -%>
+              <div class="field">
+                  <%= f.check_box :remember_me %>
+                  <%= f.label :remember_me %>
+              </div>
+            <% end %>  
+            <div class="actions">
+                <%= f.submit "Log in" %>
+            </div>
+          <% end %>
+        </div>
+      <% end %>
+    </header>
+    <!-- /HEADER -->
+
     <p class="notice"><%= notice %></p>
     <p class="alert"><%= alert %></p>
     <%= yield %>
+    
+    <!-- FOOTER -->
+    <footer id="footer">
+      <div id="wrapper">
+        <div>
+          <h3>Lorem ipsum</h3>
+          <p>Et eodem impetu Domitianum praecipitem per scalas itidem funibus constrinxerunt, eosque coniunctos per ampla spatia civitatis acri raptavere discursu.
+          </p>
+        </div>
+        <div>
+          <h3>Lorem ipsum</h3>
+          <p>Et eodem impetu Domitianum praecipitem per scalas itidem funibus constrinxerunt, eosque coniunctos per ampla spatia civitatis acri raptavere discursu.
+          </p>
+        </div>
+      </div>
+      <div id="copyright">
+        <p>© Fabriqué avec amour par nous</p>
+      </div>
+    </footer>
+    <!-- /FOOTER -->
+
   </body>
 </html>

@@ -14,5 +14,5 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require_tree .
-// attention à n'inclure que les ui utiliséés in fine
+// attention à n'inclure que les ui utiliséés in fine (autocomplete, ...)
 //= require jquery-ui

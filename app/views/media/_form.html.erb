@@ -29,7 +29,7 @@
   <p>Do you want to share this file with some of the following groups you are related to ?</p>
 
   <div class="collection">
-      <%= f.fields_for :shared_withs do |shared| %>
+      <%= f.fields_for :shared_withs, @shared_with_groups do |shared| %>
         <div>
           <%= shared.check_box :selected, checked: !shared.object.id.blank? %>
           <%= shared.label shared.object.entity.name %>
@@ -42,7 +42,9 @@
   <%= f.hidden_field :user_id, value: current_user.id %>
 
   <div class="users">
-    
+    <%= label :users, :share_with_an_user %>
+    <%= text_field_tag :search_user, nil, placeholder: 'search a specific user', id: 'search_users' %>
+    <div class="results" id="users_added"></div>
   </div>
   
   <div class="actions">

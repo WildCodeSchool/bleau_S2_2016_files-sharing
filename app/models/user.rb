@@ -12,4 +12,7 @@ class User < ApplicationRecord
 
 	accepts_nested_attributes_for :entity
 	
+	def self.search_all_except(current_user, term)
+		User.joins(:entity).where('users.id != ? AND name REGEXP ?', current_user.id, "^#{term}") 
+	end
 end
