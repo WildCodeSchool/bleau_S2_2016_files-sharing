@@ -15,4 +15,10 @@ class User < ApplicationRecord
 	def self.search_all_except(current_user, term)
 		User.joins(:entity).where('users.id != ? AND name REGEXP ?', current_user.id, "^#{term}") 
 	end
+
+	#devise passe un argument au constructeur, on est obligé d'en prévoir au moins 1
+	def initialize(resource = nil)
+		super
+		self.entity ||= Entity.new
+	end
 end

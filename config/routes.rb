@@ -1,13 +1,6 @@
 Rails.application.routes.draw do
 
-  # Permet de diriger vers page d'accueil si user connecté
-  authenticated :user do
-    root to: 'main#index'
-  end
-
-  devise_scope :user do
-    get "/sign_up" => "devise/registrations#new", as: "new_user_registration" # custom path to sign_up/registration
-  end
+  root to: 'main#index'
 
   # permet l'ajout des routes nécessaires au bon fonctionnement de devise sur l'entité User.
   # on spécifie aussi qu'on souhaite surcharger le controller par défaut avec notre controller

@@ -19,7 +19,7 @@
         <div id="connected">
           <%= link_to image_tag("profil.png", alt: "logo", id: "profil"), edit_user_registration_path %>
           <div>
-            <%= link_to('Se déconnecter', destroy_user_session_path, :method => :delete) %>        
+            <%= link_to('Log out', destroy_user_session_path, :method => :delete) %>
           </div>
         </div>
       <% else %>

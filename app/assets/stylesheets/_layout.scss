@@ -1,0 +1,88 @@
+/////////////////////////
+// Mise en page HEADER //
+/////////////////////////
+#header
+{
+	background-color: black;
+	color: white;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+
+	#logo
+	{
+		max-height: 100px;
+	}
+
+	#connection
+	{
+		margin-right: 10px;
+
+		div
+		{
+			display: inline-block;
+		}
+	}
+
+	#connected
+	{
+		text-align: center;
+		margin-right: 10px;
+	}
+}
+
+//////////////////////////////
+// Mise en page des alertes //
+//////////////////////////////
+
+.alert
+{
+	text-align:center;
+	color: red;
+	background-color: black;
+}
+
+//////////////////////////////
+// Mise en page des notices //
+//////////////////////////////
+
+.notice
+{
+	text-align:center;
+	background-color: black;
+}
+
+/////////////////////////
+// Mise en page FOOTER //
+/////////////////////////
+#footer{
+
+	#wrapper
+	{
+	background-color: black;
+	color: white;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+
+		div
+		{
+			margin: 10px;
+			width: 40%;
+		}
+	}
+
+	#copyright
+	{
+		color: white;
+		background-color: black;
+		font-weight: bold;
+		height: 1.5em;
+
+		p
+		{
+			margin-left: 20px;
+			line-height: 1.5em;
+		}
+	}
+}
