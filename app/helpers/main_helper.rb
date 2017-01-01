@@ -1,4 +1,4 @@
-module HomepageHelper
+module MainHelper
 
 	def owned_groups_entities
 		owned = Group.my_groups(current_user)

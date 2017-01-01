@@ -6,7 +6,7 @@ class MediaController < ApplicationController
     User.search_all_except(current_user, params[:term]).each do |u|
       @users << u.entity
     end
-    render json: @users.map(&:name)
+    render json: @users
   end
 
   # GET /media
