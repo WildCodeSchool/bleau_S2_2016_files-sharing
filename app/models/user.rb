@@ -5,7 +5,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :trackable, :validatable
 
     # relations avec les autres tables
-    belongs_to :entity, dependent: :destroy
+    has_one :entity, as: :type, dependent: :destroy
     has_many :media
     has_many :users_in_groups
 	has_many :groups, through: :users_in_groups
@@ -21,6 +21,6 @@ class User < ApplicationRecord
 	# déjà set sur l'entité en question dans le cas de params != nil
 	def initialize(params = nil)
 		super
-		self.entity ||= Entity.new
+		self.entity ||= self.build_entity
 	end
 end

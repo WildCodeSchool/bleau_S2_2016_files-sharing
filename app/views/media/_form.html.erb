@@ -29,7 +29,7 @@
   <% if @medium.shared_withs %>
     <p>Do you want to share this file with some of the following groups you are related to ?</p>
     <div class="collection">
-        <%= f.fields_for :shared_withs, @shared_with_groups do |shared| %>
+        <%= f.fields_for :shared_withs do |shared| %>
           <div>
             <%= shared.check_box :selected, checked: !shared.object.id.blank? %>
             <%= shared.label shared.object.entity.name %>

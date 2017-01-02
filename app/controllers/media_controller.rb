@@ -23,10 +23,9 @@ class MediaController < ApplicationController
   # GET /media/new
   def new
     @medium = Medium.new
-    helpers.all_groups_entities.each do |e|
+    Entity.all_groups.each do |e|
       @medium.shared_withs.build({entity_id: e.id})
     end
-    @shared_with_groups = @medium.shared_withs
     @users = User.all
 
     respond_to do |format|

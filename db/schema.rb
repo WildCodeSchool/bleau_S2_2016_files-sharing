@@ -10,20 +10,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161213122258) do
+ActiveRecord::Schema.define(version: 20170102091057) do
 
   create_table "entities", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string   "type_type"
+    t.integer  "type_id"
+    t.index ["type_type", "type_id"], name: "index_entities_on_type_type_and_type_id", using: :btree
   end
 
   create_table "groups", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer  "entity_id"
     t.integer  "master_id"
-    t.index ["entity_id"], name: "index_groups_on_entity_id", using: :btree
     t.index ["master_id"], name: "index_groups_on_master_id", using: :btree
   end
 
@@ -61,9 +62,7 @@ ActiveRecord::Schema.define(version: 20161213122258) do
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
-    t.integer  "entity_id"
     t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
-    t.index ["entity_id"], name: "index_users_on_entity_id", using: :btree
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   end
 
@@ -76,10 +75,8 @@ ActiveRecord::Schema.define(version: 20161213122258) do
     t.index ["user_id"], name: "index_users_in_groups_on_user_id", using: :btree
   end
 
-  add_foreign_key "groups", "entities"
   add_foreign_key "groups", "entities", column: "master_id"
   add_foreign_key "media", "users"
   add_foreign_key "shared_withs", "entities"
   add_foreign_key "shared_withs", "media"
-  add_foreign_key "users", "entities"
 end

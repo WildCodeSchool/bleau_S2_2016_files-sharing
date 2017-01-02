@@ -18,14 +18,14 @@
 		<p>Groups I own</p>
 		<% owned_groups_entities.each do |og| %>
 			<div>
-				<%= link_to og.name, og.group %>
+				<%= link_to og.name, og.type %>
 			</div>
 		<% end %>
 		<!-- visualisation des groupes auxquels l'utilisateur courant appartient -->
 		<p>Groups I'm in</p>
 		<% in_groups_entities.each do |og| %>
 			<div>
-				<%= link_to og.name, og.group %>
+				<%= link_to og.name, og.type %>
 			</div>
 		<% end %>
 		<!-- lien vers l'ajout de nouveaux groupes -->

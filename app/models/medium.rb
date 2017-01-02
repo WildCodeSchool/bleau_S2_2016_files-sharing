@@ -10,6 +10,7 @@ class Medium < ApplicationRecord
 
   	# chercher dans tous les fichiers du site
     scope :search_all, -> (search) { where("name REGEXP ?", "^#{search}") }
+    scope :order_by_date, -> { order("created_at DESC") }
 
   	# chercher dans tous les fichiers uploadé par le current user
   	def self.search_my_files(current_user, search)
