@@ -1,7 +1,6 @@
 class MainController < ApplicationController
 
 	before_action :authenticate_user!
-	before_action :is_user_authorized, only: [:download]
 
 	def index
 	end
