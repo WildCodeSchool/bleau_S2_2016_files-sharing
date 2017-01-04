@@ -1,5 +1,19 @@
 class MediaController < ApplicationController
-  before_action :set_medium, only: [:show, :edit, :update, :destroy]
+  before_action :set_medium, only: [:show, :edit, :update, :destroy, :download]
+
+  def download
+    if !(authorize @medium)
+      flash[:alert] = "You can't download this file"
+      render "main/index"
+    end
+    path = "#{Rails.root}/public#{params[:path]}"
+    if File.file? path
+      send_file path
+    else
+      flash[:alert] = "there is a problem with this file, you can't donwload it"
+      render "main/index"
+    end
+  end
 
   def search_users
     @users = []
