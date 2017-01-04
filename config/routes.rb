@@ -9,7 +9,7 @@ Rails.application.routes.draw do
 
   # other routes
   get 'index' => 'main#index', as: :index
-  get 'login/download' => 'main#download', as: :download
+  get 'login/download' => 'media#download', as: :download
   get 'search_files' => 'main#search_files', as: :search_files_modal
   get 'home' => 'main#home', as: :home_modal
   get 'search_users' => 'media#search_users'

@@ -10,4 +10,10 @@ class Group < ApplicationRecord
 		Group.where("master_id = ?", current_user.entity.id)
 	end
 
+	def self.related_groups(current_user)
+		Group
+			.joins("LEFT JOIN users_in_groups ON users_in_groups.group_id = groups.id")
+			.where("master_id = ? OR users_in_groups.user_id = ?", current_user.entity.id, current_user.id)
+	end
+
 end
