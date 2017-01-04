@@ -6,8 +6,8 @@ Devise.setup do |config|
   # confirmation, reset password and unlock tokens in the database.
   # Devise will use the `secret_key_base` as its `secret_key`
   # by default. You can change it below and use your own secret key.
-
   config.secret_key = '4d90459b01395b1d0c54b8ff907a6f07ca584a383c1af294310dc559312a54feaddfb5233a0f37ffc3c26eb3ed0a8ca4a131b1a9af8cdce193ed7a5bd47a4397'
+
 
   # précise à devise d'utiliser la classe CustomFailure décrite dans /lib
   config.warden do |manager|

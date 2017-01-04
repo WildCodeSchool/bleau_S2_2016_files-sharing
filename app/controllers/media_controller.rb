@@ -2,7 +2,10 @@ class MediaController < ApplicationController
   before_action :set_medium, only: [:show, :edit, :update, :destroy, :download]
 
   def download
-    authorize @medium
+    if !(authorize @medium)
+      flash[:alert] = "You can't download this file"
+      render "main/index"
+    end
     path = "#{Rails.root}/public#{params[:path]}"
     if File.file? path
       send_file path
