@@ -2,10 +2,7 @@ class MediaController < ApplicationController
   before_action :set_medium, only: [:show, :edit, :update, :destroy, :download]
 
   def download
-    if !(authorize @medium)
-      flash[:alert] = "You can't download this file"
-      render "main/index"
-    end
+    authorize @medium
     path = "#{Rails.root}/public#{params[:path]}"
     if File.file? path
       send_file path
@@ -16,11 +13,7 @@ class MediaController < ApplicationController
   end
 
   def search_users
-    @users = []
-    User.search_all_except(current_user, params[:term]).each do |u|
-      @users << u.entity
-    end
-    render json: @users
+    render json: User.search_all_except(current_user, params[:term]).map { |u| u.entity }
   end
 
   # GET /media
