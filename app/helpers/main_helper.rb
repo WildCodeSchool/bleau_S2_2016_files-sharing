@@ -18,8 +18,6 @@ module MainHelper
 		return entities
 	end
 
-	def media_shared_with_me
-		Group.shared_with_me
-	end
+
 
 end

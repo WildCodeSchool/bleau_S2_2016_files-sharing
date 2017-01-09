@@ -19,7 +19,7 @@ class MediumPolicy
 		has_file = true if @medium.user == @user
 		# fichier accessible via groupe
 		through_group = false
-		Group.related_groups(@user) do |g|
+		Group.my_related_groups(@user) do |g|
 			through_group  = true if @medium.entities.include? g.entity
 		end
 		# fichier accessible via partage individuel

@@ -12,9 +12,14 @@ class User < ApplicationRecord
 
 	accepts_nested_attributes_for :entity
 	
-	def self.search_all_except(current_user, term)
-		User.joins(:entity).where('users.id != ? AND name REGEXP ?', current_user.id, "^#{term}") 
-	end
+	scope :search_all_except, -> (current_user, term) { 
+		joins(:entity)
+		.where(
+			User.arel_table[:id]
+				.not_eq(current_user.id)
+			.and(Entity.arel_table[:name].matches("%#{term}%"))
+		)
+	}
 
 	# rails passe en argument du constructeur les paramètres par le biais de la méthode create.
 	# Ici on est obligé d'utiliser ||= pour la création de l'entité pour ne pas effacer les paramètres

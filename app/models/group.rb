@@ -9,7 +9,7 @@ class Group < ApplicationRecord
 	# récupérer tous les groupes appartenants à l'utilisateur courant
 	scope :my_groups, -> (current_user) { where(Group.arel_table[:master_id].eq(current_user.entity.id)) }
 	# récupérer tous les groupes auxquels l'utilisateur courant est lié (possède ou appartient)
-	scope :related_groups, -> (current_user) {
+	scope :my_related_groups, -> (current_user) {
 			joins(
 				Group.arel_table
 					.join(UsersInGroup.arel_table, Arel::Nodes::OuterJoin)
