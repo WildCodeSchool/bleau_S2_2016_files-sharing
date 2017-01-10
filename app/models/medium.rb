@@ -97,7 +97,7 @@ end
 	# recherche par date décroissante
 	scope :order_by_date_desc, -> { order(created_at: :desc) }
 
-	# permet de ne pas plusieurs fois le même élément
+	# permet de ne pas afficher plusieurs fois le même élément
 	scope :group_by_id, -> { group(:id) }
 
 	private

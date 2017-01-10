@@ -9,12 +9,11 @@ module MainHelper
 		return entities
 	end
 
-	def in_groups_entities(user = nil)
-		user ||= current_user
-		entities = []
-		user.groups.each do |g|
-			entities << g.entity
+	def in_groups_entities(user = current_user)
+		entities = user.groups.inject([]) do |mem, g|
+			mem << g.entity
 		end
+
 		return entities
 	end
 

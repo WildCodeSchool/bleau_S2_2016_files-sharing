@@ -1,7 +1,7 @@
 # check si DOM ready
 jQuery ->
 
-	# ajout d'un nouvel user
+	# ajout d'un nouveau user
 	i = 1000
 	add_user = (name, id)->
 		if !$("#users_added > div#"+name).length
