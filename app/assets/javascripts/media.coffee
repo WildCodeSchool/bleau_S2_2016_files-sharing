@@ -16,6 +16,7 @@ jQuery ->
 					<a href='#' class='remove_user'>Remove this user</a>
 				</div>
 				")
+	i++
 
 	#supression du user ciblé
 	$("#users_added").on("click",".remove_user" ,(e) ->
