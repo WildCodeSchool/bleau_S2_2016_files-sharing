@@ -1,25 +1,36 @@
-#sign_up
+@import "mixin";
+
+#sign_up_body
 {
 	flex: 1;
+	padding: 20px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background-image: url(asset-path('homepage.jpg'));
+	background-size: cover;
+    background-position: center;
+    flex-wrap: wrap;
 
-	#inscription_wrapper
-	{
-		height: 100%;
-		background-image: url(asset-path('homepage.jpg'));
-		background-size: 100%;
-        background-position: center;
-		display: flex;
-		justify-content: center;
-		align-items: center;
-
+    	#inscription, #presentation
+    	{
+			border: 1px solid #F2F2F2;
+			padding: 20px;
+			margin: 10px;
+    	}
 
 		#inscription
 		{
+			display: flex;
+			align-items: center;
+			flex-direction: column;
 			width: 300px;
-			background-color: grey;
-			border-radius: 5px;
-			text-align: center;
-			padding: 10px;
+			background-color: #3377ff;
+
+			p
+			{
+				font-weight: bold;
+			}
 			
 
 			form
@@ -27,9 +38,35 @@
 				display: flex;
 				align-items: center;
 				flex-direction: column;
+
+				label
+				{
+					margin: 5px 0 2px 0;
+				}
+
+				.submit
+				{
+					margin-top: 10px;
+				}
+
+				input:focus
+				{
+					border: 2px solid #004280;
+				}
+
 			}
 		}
-	}
 
+		#presentation
+		{
+			width: 400px;
+			background-color: #3377ff;
+
+			p
+			{
+				text-align: justify;
+				margin: 0;
+			}
+		}
 }
 

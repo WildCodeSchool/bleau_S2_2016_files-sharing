@@ -1,6 +1,13 @@
+@import "mixin";
+
+html
+{
+	height: 100%;
+}
+
 body {
 	display: flex;
-	min-height: 100vh;
+	height: 100%;
 	flex-direction: column;
 }
 
@@ -16,48 +23,107 @@ body {
 	justify-content: space-between;
 	align-items: center;
 
+	a
+	{
+		font-size: 0.8em;
+		text-decoration: none;
+		color: #3377ff;
+	}
+
+	a:hover
+	{
+		font-weight: bold;
+	}
+
+	////////////
+	/// LOGO ///
+	////////////
 	#logo
 	{
 		max-height: 80px;
 		margin: 10px;
+		@include transition(all 0.8s);
+
 	}
 
-	#connexion
+	#logo:hover
 	{
-		margin-right: 10px;
+		@include transform(rotate(360deg));
+	}
 
-		form
+	///////////////////
+	// Non conntecté //
+	///////////////////
+	form
+	{
+		font-size: 0.9em;
+		display: flex;
+		align-items: center;
+		flex-wrap: wrap;
+
+		> *
 		{
-			font-size: 0.9em;
-			display: flex;
-			align-items: center;
+			margin-top: 5px;
+		}
 
-				> *
-				{
-					margin: 0 5px 0 0;
-				}
+			.field
+			{
+				display: flex;
+				align-items: center;
+				margin-right: 10px;
 
 				input
 				{
 					line-height: 1em;
 				}
 
-				.submit
+				label
 				{
-					line-height: 1.5em;
+					margin-bottom: 0 ;
+					margin-right: 5px;
 				}
-		}
+			}
 
-		a
-		{
-			font-size: 0.8em;
-		}
+			.submit
+			{
+				line-height: 1.5em;
+				margin-top: 5px;
+				margin-right: 10px;
+			}
 	}
 
-	#connected
+	#forgot_password_link
 	{
-		text-align: center;
-		font-weight: bold;
+		text-align: right;
+		margin-right: 10px;
+	}
+
+	//////////////
+	// Connecté //
+	//////////////
+	p
+	{
+		margin: 0;
+	}
+
+	#user_profil
+	{
+		margin-right: 10px;
+
+		img
+		{
+			@include transition(all 0.5s);
+		}
+
+		img:hover
+		{
+			@include transform(scale(1.1));
+		}
+
+		div
+		 {
+		 	text-align: center;
+		 }
 	}
 }
 
