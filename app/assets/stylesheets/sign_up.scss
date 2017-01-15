@@ -1,11 +1,13 @@
-#homepage, #subscription
+#sign_up
 {
+	flex: 1;
 
-	#inscription-wrapper
+	#inscription_wrapper
 	{
-		height: 80vh;
-		background-image: url('<%= asset_path('homepage.jpg')%>');
-		background-size: cover;
+		height: 100%;
+		background-image: url(asset-path('homepage.jpg'));
+		background-size: 100%;
+        background-position: center;
 		display: flex;
 		justify-content: center;
 		align-items: center;

@@ -1,33 +1,63 @@
+body {
+	display: flex;
+	min-height: 100vh;
+	flex-direction: column;
+}
+
 /////////////////////////
 // Mise en page HEADER //
 /////////////////////////
 #header
 {
-	background-color: black;
-	color: white;
+	background-color: #F2F2F2;
+	font-size: 1em;
+	color: #3377ff;
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
 
 	#logo
 	{
-		max-height: 100px;
+		max-height: 80px;
+		margin: 10px;
 	}
 
-	#connection
+	#connexion
 	{
 		margin-right: 10px;
 
-		div
+		form
 		{
-			display: inline-block;
+			font-size: 0.9em;
+			display: flex;
+			align-items: center;
+
+				> *
+				{
+					margin: 0 5px 0 0;
+				}
+
+				input
+				{
+					line-height: 1em;
+				}
+
+				.submit
+				{
+					line-height: 1.5em;
+				}
+		}
+
+		a
+		{
+			font-size: 0.8em;
 		}
 	}
 
 	#connected
 	{
 		text-align: center;
-		margin-right: 10px;
+		font-weight: bold;
 	}
 }
 
@@ -35,54 +65,22 @@
 // Mise en page des alertes //
 //////////////////////////////
 
-.alert
+#flash
 {
-	text-align:center;
-	color: red;
-	background-color: black;
-}
-
-//////////////////////////////
-// Mise en page des notices //
-//////////////////////////////
-
-.notice
-{
-	text-align:center;
-	background-color: black;
+	text-align: center;
+	font-weight: bold;
 }
 
 /////////////////////////
 // Mise en page FOOTER //
 /////////////////////////
-#footer{
+footer{
+	background-color: #F2F2F2;
 
-	#wrapper
+	p
 	{
-	background-color: black;
-	color: white;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-
-		div
-		{
-			margin: 10px;
-			width: 40%;
-		}
-	}
-
-	#copyright
-	{
-		color: white;
-		background-color: black;
 		font-weight: bold;
-		height: 1.5em;
-
-		p
-		{
-			margin-left: 20px;
-			line-height: 1.5em;
-		}
+		color: #3377ff;
+		margin: 10px 5px;
 	}
 }
