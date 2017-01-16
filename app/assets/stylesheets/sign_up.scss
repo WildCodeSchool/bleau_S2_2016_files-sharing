@@ -15,10 +15,12 @@
 
     	#inscription, #presentation
     	{
-			border: 1px solid $color1;
 			padding: 20px;
 			margin: 10px;
-    	}
+			box-shadow: 8px 8px 12px black;
+			background-color: $secondary_background_color;
+			border-radius: 2px;
+		}
 
 		#inscription
 		{
@@ -26,7 +28,6 @@
 			align-items: center;
 			flex-direction: column;
 			width: 300px;
-			background-color: $color2;
 
 			p
 			{
@@ -61,7 +62,6 @@
 		#presentation
 		{
 			width: 400px;
-			background-color: $color2;
 
 			p
 			{

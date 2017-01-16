@@ -17,9 +17,9 @@ body {
 /////////////////////////
 #header
 {
-	background-color: $color1;
+	background-color: $color_main1;
 	font-size: 1em;
-	color: $color2;
+	color: $color_main2;
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
@@ -146,7 +146,7 @@ footer{
 	p
 	{
 		font-weight: bold;
-		color: $color2;
+		color: $color_main2;
 		margin: 10px 5px;
 	}
 }

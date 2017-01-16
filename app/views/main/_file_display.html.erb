@@ -1,5 +1,5 @@
 <div class="file">
-	<%= medium.name %>
+	<p><%= medium.name.capitalize %></p>
 	<% if medium.file.file == nil %>
 		<p>Oops, we got an unexpected error</p>
 	<% elsif medium.file.content_type.start_with? 'image' %>

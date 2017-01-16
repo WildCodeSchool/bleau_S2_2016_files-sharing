@@ -1,7 +1,8 @@
 <div id="index_body">
+
 	<div id="menu">
 		<%= link_to 'Home', home_modal_path, remote: true %>
-		<%= link_to 'My Groups', "#my_groups" %>
+		<%= link_to 'My Groups', "#", id: "link_to_my_groups" %>
 		<%= link_to 'My Files', media_path %>
 	</div>
 	<!-- Barre de recherche de fichiers-->
@@ -15,7 +16,9 @@
 	<% end %>
 
 	<!-- Modal des groupes accessible depuis le menu -->
-	<div id="my_groups">
+	<div id="modal_wrapper">
+		<div id="my_groups">
+			<a href="#" class="btn close_modal_link">X</a>
 			<p>My groups</p>
 			<!-- visualisation des groupes appartenants à l'utilisateur courant -->
 			<p>Groups I own</p>
@@ -38,8 +41,8 @@
 			<% end %>
 			<!-- lien vers la création d'un groupe -->
 			<%= button_to 'Create group', new_group_path, method: :get %>
+		</div>
 	</div>
-
 	<!-- Corps du site avec visuel des groupes et fichiers -->
 	<div id="index_main">
 		<%= render "home" %>

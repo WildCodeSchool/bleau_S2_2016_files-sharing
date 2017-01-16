@@ -4,7 +4,7 @@
 #index_body
 {
 	flex: 1;
-	background-color: $color3;
+	background-color: $main_background_color;
 
 	//////////
 	// Menu //
@@ -16,37 +16,52 @@
 		a
 		{
 			text-decoration: none;
-			background-color: $color2;
-			color: $color1;
+			background-color: $color_main2;
+			color: $color_main1;
 			font-weight: bold;
-			border-radius: 5px;
+			border-radius: 2px;
 			padding: 0.3em;
 			margin-right: 0.5em;
 		}
 
 		a:hover
 		{
-			background-color: $color1;
-			color: $color2;
+			background-color: $color_main1;
+			color: $color_main2;
 		}
 	}
 
 	/////////////////////////
 	// Fenêtre des groupes //
 	/////////////////////////
-	#my_groups
-	{
-		display: none;
-		width: 70%;
-		position: absolute;
-		top: 0;
-		right: 0;
-		bottom: 0;
-		left: 0;
-	}
 
-	#my_groups:target
+	#modal_wrapper
 	{
+		position: fixed;
+		z-index: 99999;
+		display: none;
+		height: 100%;
+		width: 100%;
+		top: 0;
+		left: 0;
+		background-color: $modal_wrapper_background;
+
+		#my_groups
+		{
+			border-radius: 5px;
+			background: $secondary_background_color;
+			padding: 2em;
+			position: relative;
+
+			.close_modal_link
+			{
+				position: absolute;
+				top: -0.5em;
+				right: -0.5em;
+				font-weight: bold;
+				font-size: 1.5em;
+			}
+		}
 	}
 
 	/////////////////////////////////
@@ -78,14 +93,13 @@
 	// Visualisation des fichiers //
 	////////////////////////////////
 	#index_main{
-		padding-bottom: 10px;
 		width: 95%;
 		margin: 2em auto;
 
 		#index_my_files, #index_last_files_shared_with_me
 		{
-			background-color: $color1;
-			border-radius: 5px;
+			background-color: $secondary_background_color;
+			border-radius: 2px;
 			padding: 1em;
 			text-align: center;
 			position: relative;
@@ -101,7 +115,7 @@
 			p
 			{
 				font-weight: bold;
-				color: $color2;
+				color: black;
 			}
 		}
 
