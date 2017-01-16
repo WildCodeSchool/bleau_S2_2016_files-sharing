@@ -1,6 +1,13 @@
 class GroupsController < ApplicationController
-  before_action :set_group, only: [:show, :edit, :update, :destroy]
+  before_action :set_group, only: [:show, :edit, :update, :destroy, :send_request]
 
+  def search_groups
+    render json: Group.search_regex(current_user, params[:term]).map { |g| g.entity }
+  end
+
+  def send_request
+    render # render index view
+  end
   # GET /groups
   # GET /groups.json
   def index

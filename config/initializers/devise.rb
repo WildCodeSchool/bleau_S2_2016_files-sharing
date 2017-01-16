@@ -8,7 +8,6 @@ Devise.setup do |config|
   # by default. You can change it below and use your own secret key.
   config.secret_key = '4d90459b01395b1d0c54b8ff907a6f07ca584a383c1af294310dc559312a54feaddfb5233a0f37ffc3c26eb3ed0a8ca4a131b1a9af8cdce193ed7a5bd47a4397'
 
-
   # précise à devise d'utiliser la classe CustomFailure décrite dans /lib
   config.warden do |manager|
     manager.failure_app = CustomFailure
@@ -160,7 +159,7 @@ Devise.setup do |config|
 
   # ==> Configuration for :validatable
   # Range for password length.
-  config.password_length = 6..128
+  config.password_length = 6..512
 
   # Email regex used to validate email formats. It simply asserts that
   # one (and only one) @ exists in the given string. This is mainly

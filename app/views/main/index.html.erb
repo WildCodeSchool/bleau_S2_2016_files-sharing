@@ -29,15 +29,15 @@
 			<% end %>
 			<!-- visualisation des groupes auxquels l'utilisateur courant appartient -->
 			<p>Groups I'm in</p>
-			<% in_groups_entities.each do |og| %>
+			<% in_groups_entities.each do |ig| %>
 				<div>
-					<%= link_to og.name, og.type %>
+					<%= link_to ig.name, ig.type %>
 				</div>
 			<% end %>
 			<!-- lien vers l'ajout de nouveaux groupes -->
-			<%= form_tag("/search_groups", method: "get", id: 'searchgroups') do |f| %>
+			<%= form_tag(send_group_request_path) do |f| %>
 				<%= text_field_tag :search, nil, placeholder: 'search', id: 'search' %>
-				<%= submit_tag "Ask to join", id: 'submit' %>
+				<%= submit_tag "Ask to join", id: 'groups_join_submit' %>
 			<% end %>
 			<!-- lien vers la création d'un groupe -->
 			<%= button_to 'Create group', new_group_path, method: :get %>

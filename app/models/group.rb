@@ -21,10 +21,15 @@ class Group < ApplicationRecord
 					.or(UsersInGroup.arel_table[:user_id].eq(current_user.id))
 			)
 	}
-	def self.related_groups(current_user)
-		Group
-			.joins("LEFT JOIN users_in_groups ON users_in_groups.group_id = groups.id")
-			.where("master_id = ? OR users_in_groups.user_id = ?", current_user.entity.id, current_user.id)
-	end
 
+	# récupérer tous les groupes matchant la regex auxquels l'utilisateur courant n'est pas déjà associé
+	scope :search_regex, -> (current_user, regex) {
+		joins(:entity)
+		.where(
+			Entity.arel_table[:name].matches("%#{regex}%")
+			.and(Group.arel_table[:id].not_in(
+				Group.my_related_groups(current_user).map{ |g| g.id }
+			))
+		)
+	}
 end

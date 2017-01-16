@@ -1,0 +1,69 @@
+<!-- Header -->
+<%= render "header" %>
+
+<!-- Body -->
+
+<!-- Barre de recherche -->
+<%= form_tag("/search", method: "get", id: 'searchbox') do |f| %>
+	<!-- arg1: nom, arg2: valeur par défaut, arg3+: autres options -->
+	<%= text_field_tag :search, nil, placeholder: 'search', id: 'search' %>
+	<!-- arg1: nom, arg2: choix/valeur, obligatoirement array d'array, arg3+: autres options -->
+	<%= select_tag :select, options_for_select([['All', 'All'], ["My files", "My files"], ['My groups', 'My groups']]), selected: 'All' %>
+	<!-- arg1: nom, arg2+: autres options -->
+	<%= submit_tag "Go", id: 'submit' %>
+<% end %>
+
+<!-- Corps du site avec visuel des groupes et fichiers -->
+<div id="login">
+	<div id="my_groups">
+		<p>My groups</p>
+		<!-- visualisation des groupes appartenants à l'utilisateur courant -->
+		<p>Groups I own</p>
+			<% @owned_groups.each do |og| %>
+			<%= link_to og.entity.name, og %>
+		<% end %>
+		<!-- visualisation des groupes auxquels l'utilisateur courant appartient -->
+		...............................
+		<!-- lien vers l'ajout de nouveaux groupes -->
+		<%= form_tag("/search_groups", method: "get", id: 'searchgroups') do |f| %>
+			<%= text_field_tag :search, nil, placeholder: 'search', id: 'search' %>
+			<%= submit_tag "Ask to join", id: 'group-join-submit' %>
+		<% end %>
+		<!-- lien vers la création d'un groupe -->
+		<%= button_to 'Create a new group', new_group_path, method: :get %>
+	</div>
+	<div id="files_visualisation">
+		<div id="my_files">
+			<p>Files I uploaded</p>
+			<%= link_to 'All my files', media_path %>
+			<div id="uploaded">
+			<!-- affichage des fichiers que l'utilisateur a uploadé -->
+				<% @owned_media.each do |medium| %>
+					<div class="file">
+						<% if medium.file.content_type == nil %>
+							<p>Oups, we got an unexpected error</p>
+						<% elsif medium.file.content_type.start_with? 'image' %>
+							<%= image_tag medium.file.thumb, alt: medium.name, class: "image_file" %>
+						<% elsif medium.file.content_type.start_with? 'video' %>
+							<%= video_tag medium.file.thumb, alt: medium.name, class: "video_file", controls: true %>
+						<% end %>
+						<div class="links">
+							<%= link_to 'Download', download_path(path: medium.file), method: :post %>
+							<%= link_to 'Update', edit_medium_path(medium) %>
+							<%= link_to 'Destroy', medium, method: :delete, data: { confirm: 'Are you sure?' } %>
+						</div>
+					</div>
+				<% end %>
+			</div>
+			<%= button_to 'Add a file', new_medium_path, method: :get %>
+		</div>
+		<div id="shared_with_me">
+			<p>Files shared with me</p>
+			<!-- affichage des fichiers partagés avec l'utilisateur, groupe + individuel -->
+			......................................
+			......................................
+		</div>
+	</div>
+</div>
+<!-- Footer -->
+<%= render "footer" %>

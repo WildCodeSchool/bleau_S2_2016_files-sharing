@@ -19,10 +19,6 @@ class MainController < ApplicationController
 		end
 	end
 
-	def search_groups
-		@groups = Group.search_all(params[:search]) - Group.related_groups(current_user)
-	end
-
 	def home
 	end
 

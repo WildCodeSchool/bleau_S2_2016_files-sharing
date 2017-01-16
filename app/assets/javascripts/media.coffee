@@ -1,6 +1,5 @@
 # check si DOM ready
 jQuery ->
-
 	# ajout d'un nouveau user
 	i = 1000
 	add_user = (name, id)->
@@ -16,12 +15,10 @@ jQuery ->
 					<a href='#' class='remove_user'>Remove this user</a>
 				</div>
 				")
-	i++
-
+	++i
 	#supression du user ciblé
 	$("#users_added").on("click",".remove_user" ,(e) ->
 		$(this).parent().remove()
-		# la méthode non obsolète defaultPrevented ne fonctionne pas
 		e.preventDefault()
 		)
 

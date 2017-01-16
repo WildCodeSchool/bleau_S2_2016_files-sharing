@@ -10,13 +10,6 @@ module MainHelper
 	end
 
 	def in_groups_entities(user = current_user)
-		entities = user.groups.inject([]) do |mem, g|
-			mem << g.entity
-		end
-
-		return entities
+		user.groups.map {|g| g.entity}
 	end
-
-
-
 end

@@ -4,11 +4,17 @@
 
 # check si DOM ready
 jQuery ->
-	set_selected_group = (name, id)->
-		$('#group-join-submit').value('Ask to join group "' + name + '"')
+	console.log("Groups:")
+	$.getJSON('/search_groups?term=', (data) ->
+		$.map(data, (item) ->
+			console.log((label: item.name, value: item.name, id: item.id))))
+
+	set_selected_group = (name, id) ->
+		console.log("Group = " + name)
+		$('#groups_join_submit').val('Ask to join group "' + name + '"')
 
 	# autocomplete pour la recherche de groups pour demander à le rejoindre
-	$('#search_groups').autocomplete
+	$('#searchgroups').autocomplete
 		source: (request, response) ->
 			$.getJSON('/search_groups?term=' + request.term, (data) ->
 				response($.map(data, (item) ->
@@ -19,7 +25,7 @@ jQuery ->
 		autoFocus: true
 
 	# évite l'envoi du formulaire en cliquant par erreur sur entrée dans l'input de recherche de groupe
-	$('#search_users').on('keydown', (e) ->
-		if e.which == 13
+	$('#search_groups').on('keydown', (e) ->
+		if e.which == 13	# \n ASCII code
 			e.preventDefault()
 		)
