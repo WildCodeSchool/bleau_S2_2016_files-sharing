@@ -1,4 +1,5 @@
 @import "mixin";
+@import "var";
 
 #sign_up_body
 {
@@ -14,7 +15,7 @@
 
     	#inscription, #presentation
     	{
-			border: 1px solid #F2F2F2;
+			border: 1px solid $color1;
 			padding: 20px;
 			margin: 10px;
     	}
@@ -25,7 +26,7 @@
 			align-items: center;
 			flex-direction: column;
 			width: 300px;
-			background-color: #3377ff;
+			background-color: $color2;
 
 			p
 			{
@@ -60,7 +61,7 @@
 		#presentation
 		{
 			width: 400px;
-			background-color: #3377ff;
+			background-color: $color2;
 
 			p
 			{

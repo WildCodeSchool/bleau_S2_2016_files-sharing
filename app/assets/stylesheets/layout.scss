@@ -1,4 +1,5 @@
 @import "mixin";
+@import "var";
 
 html
 {
@@ -16,9 +17,9 @@ body {
 /////////////////////////
 #header
 {
-	background-color: #F2F2F2;
+	background-color: $color1;
 	font-size: 1em;
-	color: #3377ff;
+	color: $color2;
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
@@ -27,7 +28,6 @@ body {
 	{
 		font-size: 0.8em;
 		text-decoration: none;
-		color: #3377ff;
 	}
 
 	a:hover
@@ -146,7 +146,7 @@ footer{
 	p
 	{
 		font-weight: bold;
-		color: #3377ff;
+		color: $color2;
 		margin: 10px 5px;
 	}
 }

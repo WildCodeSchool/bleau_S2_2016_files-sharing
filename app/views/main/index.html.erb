@@ -1,42 +1,47 @@
-<%= link_to 'Home', home_modal_path, remote: true %>
-
-<!-- Barre de recherche de fichiers-->
-<%= form_tag(search_files_modal_path, method: "get", id: 'searchbox', remote: true) do |f| %>
-	<!-- arg1: nom, arg2: valeur par défaut, arg3+: autres options -->
-	<%= text_field_tag :search, nil, placeholder: 'search', id: 'search' %>
-	<!-- arg1: nom, arg2: choix/valeur, obligatoirement array d'array, arg3+: autres options -->
-	<%= select_tag :select, options_for_select([['All', 'All'], ["My files", "My files"], ['Shared by my groups', 'Shared by my groups'], ['shared with me specifically', 'Shared with me'], ["All files downloadable", "All files downloadable"]]), selected: 'All' %>
-	<!-- arg1: nom, arg2+: autres options -->
-	<%= submit_tag "Go", id: 'submit' %>
-<% end %>
-
-<!-- Corps du site avec visuel des groupes et fichiers -->
-<div id="index">
-	<div id="my_groups">
-		<p>My groups</p>
-		<!-- visualisation des groupes appartenants à l'utilisateur courant -->
-		<p>Groups I own</p>
-		<% owned_groups_entities.each do |og| %>
-			<div>
-				<%= link_to og.name, og.type %>
-			</div>
-		<% end %>
-		<!-- visualisation des groupes auxquels l'utilisateur courant appartient -->
-		<p>Groups I'm in</p>
-		<% in_groups_entities.each do |og| %>
-			<div>
-				<%= link_to og.name, og.type %>
-			</div>
-		<% end %>
-		<!-- lien vers l'ajout de nouveaux groupes -->
-		<%= form_tag("/search_groups", method: "get", id: 'searchgroups') do |f| %>
-			<%= text_field_tag :search, nil, placeholder: 'search', id: 'search' %>
-			<%= submit_tag "Ask to join", id: 'submit' %>
-		<% end %>
-		<!-- lien vers la création d'un groupe -->
-		<%= button_to 'Create group', new_group_path, method: :get %>
+<div id="index_body">
+	<div id="menu">
+		<%= link_to 'Home', home_modal_path, remote: true %>
+		<%= link_to 'My Groups', "#my_groups" %>
+		<%= link_to 'My Files', media_path %>
 	</div>
-	<div id="main_div">
+	<!-- Barre de recherche de fichiers-->
+	<%= form_tag(search_files_modal_path, method: "get", id: 'search_files', remote: true) do |f| %>
+		<!-- arg1: nom, arg2: valeur par défaut, arg3+: autres options -->
+		<%= text_field_tag :search, nil, placeholder: 'search', id: 'search_files_text', class: "form-control" %>
+		<!-- arg1: nom, arg2: choix/valeur, obligatoirement array d'array, arg3+: autres options -->
+		<%= select_tag :select, options_for_select([['All', 'All'], ["My files", "My files"], ['Shared by my groups', 'Shared by my groups'], ['shared with me specifically', 'Shared with me'], ["All files downloadable", "All files downloadable"]]), id: "search_files_select", class: "form-control", selected: 'All' %>
+		<!-- arg1: nom, arg2+: autres options -->
+		<%= submit_tag "Go", id: 'submit', class: "btn-primary submit" %>
+	<% end %>
+
+	<!-- Modal des groupes accessible depuis le menu -->
+	<div id="my_groups">
+			<p>My groups</p>
+			<!-- visualisation des groupes appartenants à l'utilisateur courant -->
+			<p>Groups I own</p>
+			<% owned_groups_entities.each do |og| %>
+				<div>
+					<%= link_to og.name, og.type %>
+				</div>
+			<% end %>
+			<!-- visualisation des groupes auxquels l'utilisateur courant appartient -->
+			<p>Groups I'm in</p>
+			<% in_groups_entities.each do |og| %>
+				<div>
+					<%= link_to og.name, og.type %>
+				</div>
+			<% end %>
+			<!-- lien vers l'ajout de nouveaux groupes -->
+			<%= form_tag("/search_groups", method: "get", id: 'searchgroups') do |f| %>
+				<%= text_field_tag :search, nil, placeholder: 'search', id: 'search' %>
+				<%= submit_tag "Ask to join", id: 'submit' %>
+			<% end %>
+			<!-- lien vers la création d'un groupe -->
+			<%= button_to 'Create group', new_group_path, method: :get %>
+	</div>
+
+	<!-- Corps du site avec visuel des groupes et fichiers -->
+	<div id="index_main">
 		<%= render "home" %>
 	</div>
 </div>
