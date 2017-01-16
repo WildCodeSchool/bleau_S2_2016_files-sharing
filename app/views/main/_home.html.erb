@@ -1,16 +1,16 @@
-<div id="my_files">
-	<p>Files I uploaded</p>
-	<%= link_to 'All my files', media_path %>
+<div id="index_my_files">
+	<p>My saved files</p>
+	<%= link_to 'See all my files', media_path, class: "link_to_see_all_my_files" %>
 	<div id="uploaded">
 	<!-- affichage des fichiers que l'utilisateur a uploadé -->
 		<% current_user.media.each do |medium| %>
 			<%= render 'file_display', medium: medium %>
 		<% end %>
 	</div>
-	<%= button_to 'Add a file', new_medium_path, method: :get %>
+	<%= link_to 'Add a file', new_medium_path, class: "btn btn-primary", method: :get %>
 </div>
-<div id="shared_with_me">
-	<p>Files shared with me</p>
+<div id="index_last_files_shared_with_me">
+	<p>Last files shared with me</p>
 	<!-- affichage des fichiers partagés avec l'utilisateur, groupe + individuel -->
 	.....................................
 	.....................................

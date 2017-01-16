@@ -1,59 +1,124 @@
-#searchbox
+@import "mixin";
+@import "var";
+
+#index_body
 {
-	display: flex;
-	justify-content: center;
+	flex: 1;
+	background-color: $color3;
 
-	#search
+	//////////
+	// Menu //
+	//////////
+	#menu
 	{
-		width: 70%;
-	}
-}
+		margin: 1em;
 
-#index{
-	padding-bottom: 10px;
-	display: flex;
-
-	// visualisation des fichiers accessibles
-	#main_div
-	{
-		margin: 10px 10px 0 0;
-		width: 85%;
-		
-		> div
+		a
 		{
-			padding-top: 10px;
-			
+			text-decoration: none;
+			background-color: $color2;
+			color: $color1;
+			font-weight: bold;
+			border-radius: 5px;
+			padding: 0.3em;
+			margin-right: 0.5em;
+		}
+
+		a:hover
+		{
+			background-color: $color1;
+			color: $color2;
+		}
+	}
+
+	/////////////////////////
+	// Fenêtre des groupes //
+	/////////////////////////
+	#my_groups
+	{
+		display: none;
+		width: 70%;
+		position: absolute;
+		top: 0;
+		right: 0;
+		bottom: 0;
+		left: 0;
+	}
+
+	#my_groups:target
+	{
+	}
+
+	/////////////////////////////////
+	// Barre de recherche de média //
+	/////////////////////////////////
+	#search_files
+	{
+		display: flex;
+		justify-content: center;
+		flex-wrap: wrap;
+
+		>*
+		{
+			margin: 0 0.2em;
+		}
+
+		#search_files_text
+		{
+			width: 70%;
+		}
+
+		#search_files_select
+		{
+			width: 15%;
+		}
+	}
+
+	////////////////////////////////
+	// Visualisation des fichiers //
+	////////////////////////////////
+	#index_main{
+		padding-bottom: 10px;
+		width: 95%;
+		margin: 2em auto;
+
+		#index_my_files, #index_last_files_shared_with_me
+		{
+			background-color: $color1;
+			border-radius: 5px;
+			padding: 1em;
+			text-align: center;
+			position: relative;
+
+			.link_to_see_all_my_files
+			{
+				text-decoration: none;
+				position: absolute;
+				top: 1em;
+				left: 1em;
+			}
+
 			p
 			{
-				margin: 0 0 0 20px;
-				color: #272143;
-				font-weight: bold
+				font-weight: bold;
+				color: $color2;
 			}
 		}
 
-		#my_files, #files_visualisation
+		#index_my_files
 		{
-			margin-bottom: 10px;
+			margin-bottom: 1em;
 
-			a
-			{
-				text-decoration: none;
-				color: blue;
-			}
-
-			#uploaded, .files
+			#uploaded
 			{
 				display: flex;
-
+				flex-wrap: wrap;
 			}
+		}
 
-			input
-			{
-				margin: 10px;
-				background-color: LightSlateGray;
-				color: white;
-				font-weight: bold;
-			}
+		#index_last_files_shared_with_me
+		{
+
 		}
 	}
 }

@@ -1,0 +1,15 @@
+@mixin transition($tr) {
+  -webkit-transition: #{$tr};
+  -moz-transition: #{$tr};
+  -ms-transition: #{$tr};
+  -o-transition: #{$tr};
+  transition: #{$tr};      
+}
+
+@mixin transform($tr) {
+  -webkit-transform: #{$tr};
+  -moz-transform: #{$tr};
+  -ms-transform: #{$tr};
+  -o-transform: #{$tr};
+  transform: #{$tr};      
+}
