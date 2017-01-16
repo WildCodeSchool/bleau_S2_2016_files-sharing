@@ -12,6 +12,7 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require bootstrap
 //= require turbolinks
 //= require_tree .
 // attention à n'inclure que les ui utiliséés in fine (autocomplete, ...)

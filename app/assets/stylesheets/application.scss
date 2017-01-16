@@ -19,7 +19,4 @@
  *= require jquery-ui
  */
 
-html *{
-	margin: 0;
-	font-family: cursive;
-}
+@import "bootstrap";

@@ -1,0 +1,40 @@
+@import "var";
+
+.file
+{
+	margin: 0.5em;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	flex-direction: column;
+	padding: 0.6em;
+	background-color: $background_color3;
+	border-radius: 2px;
+
+	p
+	{
+		font-weight: bold;
+	}
+
+	.links
+	{
+		margin-top: 0.5em;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+
+		a
+		{
+			text-decoration: none;
+			color: $color_main1;
+			border-radius: 2px;
+			padding: 0.3em;
+		}
+
+		a:hover
+		{
+			background-color: $color_main1;
+			color: $color_main2;
+		}
+	}
+}

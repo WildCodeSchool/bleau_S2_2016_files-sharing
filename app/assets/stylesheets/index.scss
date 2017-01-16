@@ -1,59 +1,138 @@
-#searchbox
+@import "mixin";
+@import "var";
+
+#index_body
 {
-	display: flex;
-	justify-content: center;
+	flex: 1;
+	background-color: $main_background_color;
 
-	#search
+	//////////
+	// Menu //
+	//////////
+	#menu
 	{
-		width: 70%;
-	}
-}
+		margin: 1em;
 
-#index{
-	padding-bottom: 10px;
-	display: flex;
-
-	// visualisation des fichiers accessibles
-	#main_div
-	{
-		margin: 10px 10px 0 0;
-		width: 85%;
-		
-		> div
+		a
 		{
-			padding-top: 10px;
-			
+			text-decoration: none;
+			background-color: $color_main2;
+			color: $color_main1;
+			font-weight: bold;
+			border-radius: 2px;
+			padding: 0.3em;
+			margin-right: 0.5em;
+		}
+
+		a:hover
+		{
+			background-color: $color_main1;
+			color: $color_main2;
+		}
+	}
+
+	/////////////////////////
+	// Fenêtre des groupes //
+	/////////////////////////
+
+	#modal_wrapper
+	{
+		position: fixed;
+		z-index: 99999;
+		display: none;
+		height: 100%;
+		width: 100%;
+		top: 0;
+		left: 0;
+		background-color: $modal_wrapper_background;
+
+		#my_groups
+		{
+			border-radius: 5px;
+			background: $secondary_background_color;
+			padding: 2em;
+			position: relative;
+
+			.close_modal_link
+			{
+				position: absolute;
+				top: -0.5em;
+				right: -0.5em;
+				font-weight: bold;
+				font-size: 1.5em;
+			}
+		}
+	}
+
+	/////////////////////////////////
+	// Barre de recherche de média //
+	/////////////////////////////////
+	#search_files
+	{
+		display: flex;
+		justify-content: center;
+		flex-wrap: wrap;
+
+		>*
+		{
+			margin: 0 0.2em;
+		}
+
+		#search_files_text
+		{
+			width: 70%;
+		}
+
+		#search_files_select
+		{
+			width: 15%;
+		}
+	}
+
+	////////////////////////////////
+	// Visualisation des fichiers //
+	////////////////////////////////
+	#index_main{
+		width: 95%;
+		margin: 2em auto;
+
+		#index_my_files, #index_last_files_shared_with_me
+		{
+			background-color: $secondary_background_color;
+			border-radius: 2px;
+			padding: 1em;
+			text-align: center;
+			position: relative;
+
+			.link_to_see_all_my_files
+			{
+				text-decoration: none;
+				position: absolute;
+				top: 1em;
+				left: 1em;
+			}
+
 			p
 			{
-				margin: 0 0 0 20px;
-				color: #272143;
-				font-weight: bold
+				font-weight: bold;
+				color: black;
 			}
 		}
 
-		#my_files, #files_visualisation
+		#index_my_files
 		{
-			margin-bottom: 10px;
+			margin-bottom: 1em;
 
-			a
-			{
-				text-decoration: none;
-				color: blue;
-			}
-
-			#uploaded, .files
+			#uploaded
 			{
 				display: flex;
-
+				flex-wrap: wrap;
 			}
+		}
 
-			input
-			{
-				margin: 10px;
-				background-color: LightSlateGray;
-				color: white;
-				font-weight: bold;
-			}
+		#index_last_files_shared_with_me
+		{
+
 		}
 	}
 }

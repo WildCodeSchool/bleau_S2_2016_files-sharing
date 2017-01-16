@@ -1,0 +1,152 @@
+@import "mixin";
+@import "var";
+
+html
+{
+	height: 100%;
+}
+
+body {
+	display: flex;
+	height: 100%;
+	flex-direction: column;
+}
+
+/////////////////////////
+// Mise en page HEADER //
+/////////////////////////
+#header
+{
+	background-color: $color_main1;
+	font-size: 1em;
+	color: $color_main2;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+
+	a
+	{
+		font-size: 0.8em;
+		text-decoration: none;
+	}
+
+	a:hover
+	{
+		font-weight: bold;
+	}
+
+	////////////
+	/// LOGO ///
+	////////////
+	#logo
+	{
+		max-height: 80px;
+		margin: 10px;
+		@include transition(all 0.8s);
+
+	}
+
+	#logo:hover
+	{
+		@include transform(rotate(360deg));
+	}
+
+	///////////////////
+	// Non conntecté //
+	///////////////////
+	form
+	{
+		font-size: 0.9em;
+		display: flex;
+		align-items: center;
+		flex-wrap: wrap;
+
+		> *
+		{
+			margin-top: 5px;
+		}
+
+			.field
+			{
+				display: flex;
+				align-items: center;
+				margin-right: 10px;
+
+				input
+				{
+					line-height: 1em;
+				}
+
+				label
+				{
+					margin-bottom: 0 ;
+					margin-right: 5px;
+				}
+			}
+
+			.submit
+			{
+				line-height: 1.5em;
+				margin-top: 5px;
+				margin-right: 10px;
+			}
+	}
+
+	#forgot_password_link
+	{
+		text-align: right;
+		margin-right: 10px;
+	}
+
+	//////////////
+	// Connecté //
+	//////////////
+	p
+	{
+		margin: 0;
+	}
+
+	#user_profil
+	{
+		margin-right: 10px;
+
+		img
+		{
+			@include transition(all 0.5s);
+		}
+
+		img:hover
+		{
+			@include transform(scale(1.1));
+		}
+
+		div
+		 {
+		 	text-align: center;
+		 }
+	}
+}
+
+//////////////////////////////
+// Mise en page des alertes //
+//////////////////////////////
+
+#flash
+{
+	text-align: center;
+	font-weight: bold;
+}
+
+/////////////////////////
+// Mise en page FOOTER //
+/////////////////////////
+footer{
+	background-color: #F2F2F2;
+
+	p
+	{
+		font-weight: bold;
+		color: $color_main2;
+		margin: 10px 5px;
+	}
+}

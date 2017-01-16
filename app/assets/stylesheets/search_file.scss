@@ -1,0 +1,14 @@
+@import "var";
+
+#search_files_results
+{
+	margin: 0 auto;
+	background-color: $secondary_background_color;
+	padding: 1em;
+	border-radius: 2px;
+
+	.files
+	{
+		display: flex;
+	}
+}

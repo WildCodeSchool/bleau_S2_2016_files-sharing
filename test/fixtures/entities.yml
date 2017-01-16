@@ -1,7 +1,21 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  name: MyString
+  name: "User1"
+  type_type: User
+  type_id: 1
 
 two:
-  name: MyString
+  name: "User2"
+  type_type: User
+  type_id: 2
+
+three:
+  name: "Group1"
+  type_type: Group
+  type_id: 1
+
+four:
+  name: "Group2"
+  type_type: Group
+  type_id: 2

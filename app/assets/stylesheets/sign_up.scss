@@ -1,0 +1,73 @@
+@import "mixin";
+@import "var";
+
+#sign_up_body
+{
+	flex: 1;
+	padding: 20px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background-image: url(asset-path('homepage.jpg'));
+	background-size: cover;
+    background-position: center;
+    flex-wrap: wrap;
+
+    	#inscription, #presentation
+    	{
+			padding: 20px;
+			margin: 10px;
+			box-shadow: 8px 8px 12px black;
+			background-color: $secondary_background_color;
+			border-radius: 2px;
+		}
+
+		#inscription
+		{
+			display: flex;
+			align-items: center;
+			flex-direction: column;
+			width: 300px;
+
+			p
+			{
+				font-weight: bold;
+			}
+			
+
+			form
+			{
+				display: flex;
+				align-items: center;
+				flex-direction: column;
+
+				label
+				{
+					margin: 5px 0 2px 0;
+				}
+
+				.submit
+				{
+					margin-top: 10px;
+				}
+
+				input:focus
+				{
+					border: 2px solid #004280;
+				}
+
+			}
+		}
+
+		#presentation
+		{
+			width: 400px;
+
+			p
+			{
+				text-align: justify;
+				margin: 0;
+			}
+		}
+}
+

@@ -11,69 +11,68 @@
 
     <!-- HEADER -->
     <header id="header">
-      <%= image_tag "logo.jpeg", alt: "logo", id: "logo" %>
       <% if user_signed_in? %>
-        <div>
-          <p>Welcome <%= current_user.entity.name %>, have a nice day !</p>
-        </div>
-        <div id="connected">
-          <%= link_to image_tag("profil.png", alt: "logo", id: "profil"), edit_user_registration_path %>
-          <div>
-            <%= link_to('Log out', destroy_user_session_path, :method => :delete) %>
+          <%= image_tag "logo.svg", alt: "logo", id: "logo" %>
+          <p>Welcome <strong><%= current_user.entity.name %></strong>, have a nice day !</p>
+          <div id="user_profil">
+            <%= link_to image_tag("profil.png", alt: "logo", id: "profil"), edit_user_registration_path %>
+            <div>
+              <%= link_to('Log out', destroy_user_session_path, :method => :delete) %>
+            </div>
           </div>
-        </div>
       <% else %>
-        <div id="connection">
-          <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+          <%= image_tag "logo.svg", alt: "logo", id: "logo" %>
+          <div id="sign_in">
+            <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
               <div class="field">
                 <%= f.label :email %><br />
-                <%= f.email_field :email, autofocus: true %>
-            </div>
-            <div class="field">
-                <%= f.label :password %><br />
-                <%= f.password_field :password, autocomplete: "off" %>
-            </div>
-            <% if devise_mapping.rememberable? -%>
-              <div class="field">
-                  <%= f.check_box :remember_me %>
-                  <%= f.label :remember_me %>
+                <%= f.email_field :email, autofocus: true, class: "form-control", size: "20" %>
               </div>
-            <% end %>  
-            <div class="actions">
-                <%= f.submit "Log in" %>
+              <div class="field">
+                <%= f.label :password %><br />
+                <%= f.password_field :password, class: "form-control", size: "17" %>
+              </div>
+                <!-- Ne fonctionne que si la bibliothèque rememberable est activée -->
+                <% if devise_mapping.rememberable? -%>
+                  <div class="field">
+                    <%= f.check_box :remember_me %>
+                    <%= f.label :remember_me %>
+                  </div>
+                <% end %>  
+                <%= f.submit "Log in", class: "btn-primary submit" %>
+            <% end %>
+            <div id="forgot_password_link">
+              <%= link_to "Forgot your password?", new_password_path(resource_name) %>
             </div>
-          <% end %>
-        </div>
+          </div>
       <% end %>
     </header>
     <!-- /HEADER -->
 
+    <!-- BODY -->
     <div id="flash">
       <% flash.each do |key, value| %>
-        <div class="<%= key %>">
-          <%= value %>
-        </div>
+        <% if key == "notice" %>
+          <div class="alert-success">
+            <%= value %>
+          </div>
+        <% elsif key == "alert" %>
+          <div class="alert-warning">
+            <%= value %>
+          </div>
+        <% else %>
+          <div>
+            <%= value %>
+          </div> 
+        <% end %>  
       <% end %>
     </div>
     <%= yield %>
+    <!-- /BODY -->
     
     <!-- FOOTER -->
-    <footer id="footer">
-      <div id="wrapper">
-        <div>
-          <h3>Lorem ipsum</h3>
-          <p>Et eodem impetu Domitianum praecipitem per scalas itidem funibus constrinxerunt, eosque coniunctos per ampla spatia civitatis acri raptavere discursu.
-          </p>
-        </div>
-        <div>
-          <h3>Lorem ipsum</h3>
-          <p>Et eodem impetu Domitianum praecipitem per scalas itidem funibus constrinxerunt, eosque coniunctos per ampla spatia civitatis acri raptavere discursu.
-          </p>
-        </div>
-      </div>
-      <div id="copyright">
-        <p>© Fabriqué avec amour par nous</p>
-      </div>
+    <footer>
+      <p>© Fabriqué avec amour par nous</p>
     </footer>
     <!-- /FOOTER -->
 
