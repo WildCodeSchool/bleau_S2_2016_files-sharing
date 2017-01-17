@@ -5,11 +5,11 @@ class Medium < ApplicationRecord
 	belongs_to :user
 	has_many :shared_withs, dependent: :destroy, inverse_of: :medium
 	has_many :entities, through: :shared_withs
-
 	accepts_nested_attributes_for :shared_withs, reject_if: lambda{ |a| a[:selected] == '0'}
 
 	# chercher dans tous les fichiers du site
-	scope :search_all, -> (search) { where(Medium.arel_table[:name].matches("%#{search}%")) }
+	scope :search_all, -> (search) { where("name REGEXP ?", "^#{search}") }
+	scope :order_by_date, -> { order("created_at DESC") }
 
 	# chercher dans tous les fichiers uploadé par le current user
   	scope :search_in_my_files, -> (current_user, search) { 
@@ -44,7 +44,7 @@ class Medium < ApplicationRecord
 		mine = search_in_my_files(current_user, search)
 		shared_with_me = search_in_files_shared_with_me(current_user, search)
 		shared_by_groups = search_in_files_shared_by_my_groups(current_user, search)
-	  (mine+shared_with_me+shared_by_groups).uniq
+		(mine+shared_with_me+shared_by_groups).uniq
 	end
 
 	# recherche par date décroissante
@@ -56,11 +56,6 @@ class Medium < ApplicationRecord
 	private
 
 	def self.related_groups_entities_ids(current_user)
-		ids = []
-		Group.my_related_groups(current_user).each do |g|
-			ids << g.entity.id
-		end
-		return ids
+		Group.my_related_groups(current_user).map { |g| g.entity.id }
 	end
-
 end

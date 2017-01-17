@@ -20,7 +20,7 @@ class MediumPolicy
 		# fichier accessible via groupe
 		through_group = false
 
-		Group.related_groups(@user) do |g|
+		Group.my_related_groups(@user) do |g|
 			through_group ||= @medium.entities.include? g.entity
 		end
 		# fichier accessible via partage individuel
