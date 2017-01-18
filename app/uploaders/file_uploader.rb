@@ -1,18 +1,29 @@
 class FileUploader < CarrierWave::Uploader::Base
 
-  # Include RMagick or MiniMagick support:
-  # include CarrierWave::RMagick
-  # include CarrierWave::MiniMagick
-  include CarrierWave::MiniMagick
-  # enelever le commentaire si onsouhaite avoir de grands formats d'images
-  # process resize_to_fit: [800, 800]
-
-  version :thumb do
-    process resize_to_fill: [100,100]
-  end
   # Choose what kind of storage to use for this uploader:
   storage :file
   # storage :fog
+
+  # Include RMagick or MiniMagick support:
+  # include CarrierWave::RMagick
+  include CarrierWave::MiniMagick
+
+  # transfo pdf avec MiniMagick
+  version :web_thumb do
+    process :thumbnail_pdf
+  end
+
+  def thumbnail_pdf
+    manipulate! do |img|
+      img.format("png", 1)
+      img.resize("100x100")
+      img = yield(img) if block_given?
+      img
+    end
+  end
+
+  # enelever le commentaire si onsouhaite avoir de grands formats d'images
+  # process resize_to_fit: [800, 800]
 
   # Override the directory where uploaded files will be stored.
   # This is a sensible default for uploaders that are meant to be mounted:
@@ -36,9 +47,9 @@ class FileUploader < CarrierWave::Uploader::Base
   # end
 
   # Create different versions of your uploaded files:
-  # version :thumb do
-  #   process resize_to_fit: [50, 50]
-  # end
+  version :thumb do
+    process resize_to_fit: [100, 100]
+  end
 
   # Add a white list of extensions which are allowed to be uploaded.
   # For images you might use something like this:

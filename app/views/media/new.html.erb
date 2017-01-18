@@ -1,5 +1,6 @@
 <div id="new_medium">
-	<h3>New Medium</h3>
+	<%= render "main/menu" %>
+	<h3>Add a new file</h3>
 	<%= render 'form', medium: @medium %>
-	<%= link_to 'Return to your homepage', root_path %>
+	<%= link_to 'Cancel', root_path %>
 </div>

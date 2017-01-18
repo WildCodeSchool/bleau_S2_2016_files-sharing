@@ -1,10 +1,7 @@
 <div id="index_body">
 
-	<div id="menu">
-		<%= link_to 'Home', home_modal_path, remote: true %>
-		<%= link_to 'My Groups', "#", id: "link_to_my_groups" %>
-		<%= link_to 'My Files', media_path %>
-	</div>
+	<%= render "menu" %>
+	
 	<!-- Barre de recherche de fichiers-->
 	<%= form_tag(search_files_modal_path, method: "get", id: 'search_files', remote: true) do |f| %>
 		<!-- arg1: nom, arg2: valeur par défaut, arg3+: autres options -->

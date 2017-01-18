@@ -2,21 +2,19 @@
 jQuery ->
 
 	# ajout d'un nouvel user
-	i = 1000
 	add_user = (name, id)->
 		if !$("#users_added > div#"+name).length
 			$('#users_added').append("
 				<div id="+name+">
 					<p>You will share this file with "+name+"</p>
-					<select name='medium[shared_withs_attributes]["+i+"][rights]'>
+					<select name='medium[shared_withs_attributes][][rights]'>
 						<option value='R'>Read only</option>
 						<option value='RW'>Read and modify</option>
 					</select> 
-					<input type='hidden' name='medium[shared_withs_attributes]["+i+"][entity_id]' value="+id+">
+					<input type='hidden' name='medium[shared_withs_attributes][][entity_id]' value="+id+">
 					<a href='#' class='remove_user'>Remove this user</a>
 				</div>
 				")
-	i++
 
 	#supression du user ciblé
 	$("#users_added").on("click",".remove_user" ,(e) ->
