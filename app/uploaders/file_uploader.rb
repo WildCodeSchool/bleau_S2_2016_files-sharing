@@ -8,25 +8,29 @@ class FileUploader < CarrierWave::Uploader::Base
   # include CarrierWave::RMagick
   include CarrierWave::MiniMagick
 
-  # transfo pdf avec MiniMagick
-  version :web_thumb do
+  # Create different versions of your uploaded files:
+  version :thumb, if: :is_image? do
+    process resize_to_fit: [100, 100]
+  end
+
+  # transfo pdf/texte avec MiniMagick
+  version :pdf_thumb, if: :is_pdf? do
     process :thumbnail_pdf
   end
 
   def thumbnail_pdf
     manipulate! do |img|
-      img.format("png", 1)
+      img.format("png", 0)
       img.resize("100x100")
       img = yield(img) if block_given?
       img
     end
   end
 
-  # enelever le commentaire si onsouhaite avoir de grands formats d'images
+  # redimentionne les images auto si non commenté, sans condition
   # process resize_to_fit: [800, 800]
 
   # Override the directory where uploaded files will be stored.
-  # This is a sensible default for uploaders that are meant to be mounted:
   def store_dir
     "uploads/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
   end
@@ -46,11 +50,6 @@ class FileUploader < CarrierWave::Uploader::Base
   #   # do something
   # end
 
-  # Create different versions of your uploaded files:
-  version :thumb do
-    process resize_to_fit: [100, 100]
-  end
-
   # Add a white list of extensions which are allowed to be uploaded.
   # For images you might use something like this:
   # def extension_whitelist
@@ -62,5 +61,15 @@ class FileUploader < CarrierWave::Uploader::Base
   # def filename
   #   "something.jpg" if original_filename
   # end
+
+  private
+
+  def is_image?(file)
+     file.content_type.start_with? 'image'
+  end
+
+  def is_pdf?(file)
+    file.content_type == "application/pdf"
+  end
 
 end
