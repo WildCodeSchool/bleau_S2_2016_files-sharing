@@ -12,16 +12,15 @@
 	border-radius: 2px;
 	max-width: 300px;
 
-	p span
+	.file_attr
 	{
-		font-weight: normal;
-	}
-
-	.file_size
-	{
-		font-weight: 900;
 		margin: 0;
 		font-size: 0.9em;
+	}
+
+	.file_attr span
+	{
+		font-weight: normal;
 	}
 
 	.links

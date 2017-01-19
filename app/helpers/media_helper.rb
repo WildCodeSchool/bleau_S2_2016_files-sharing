@@ -20,11 +20,11 @@ module MediaHelper
 	def medium_size_format(medium)
 		size = medium.size.to_i
 		if size/1024 <= 1
-			content_tag(:p,"#{size} octets", class: "file_size")
+			"#{size} octets"
 		elsif size/1024**2 <= 1
-			content_tag(:p,"#{(size.to_f/1024.0).round(1)} Kio", class: "file_size")
+			"#{(size.to_f/1024.0).round(1)} Kio"
 		elsif size/1024**3 <= 1
-			content_tag(:p,"#{(size.to_f/1024**2).round(1)} Mo", class: "file_size")
+			"#{(size.to_f/1024**2).round(1)} Mo"
 		end
 	end
 

@@ -1,9 +1,14 @@
 <div class="file">
 	<p>
-		<%= medium.name.capitalize %><span>(.<%= medium.extension %>)</span>
+		<%= medium.name.capitalize %>
 	</p>
 	<%= medium_display_by_type(medium) %>
-	<%= medium_size_format(medium) %>
+	<p class="file_attr">
+		Format</br>
+		<span><%= medium.extension %></span></br>
+		Size</br>
+		<span><%= medium_size_format(medium) %></span>
+	</p>
 	<div class="links">
 		<% if policy(medium).download? %>
 			<%= link_to 'Download', download_path(path: medium.file, id: medium.id) %>
