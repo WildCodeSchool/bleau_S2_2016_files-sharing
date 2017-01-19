@@ -10,16 +10,22 @@
 	padding: 0.6em;
 	background-color: $background_color3;
 	border-radius: 2px;
-	max-width: 150px;
+	max-width: 300px;
 
-	p
+	p span
 	{
-		font-weight: bold;
+		font-weight: normal;
+	}
+
+	.file_size
+	{
+		font-weight: 900;
+		margin: 0;
+		font-size: 0.9em;
 	}
 
 	.links
 	{
-		margin-top: 0.5em;
 		display: flex;
 		flex-direction: column;
 		align-items: center;

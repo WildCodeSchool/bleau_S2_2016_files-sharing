@@ -9,7 +9,7 @@ class FileUploader < CarrierWave::Uploader::Base
   include CarrierWave::MiniMagick
 
   # Create different versions of your uploaded files:
-  version :thumb, if: :is_image? do
+  version :thumb, if: :is_image_or_video? do
     process resize_to_fit: [100, 100]
   end
 
@@ -64,8 +64,8 @@ class FileUploader < CarrierWave::Uploader::Base
 
   private
 
-  def is_image?(file)
-     file.content_type.start_with? 'image'
+  def is_image_or_video?(file)
+     file.content_type.start_with?('image') || file.content_type.start_with?('video')
   end
 
   def is_pdf?(file)

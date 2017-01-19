@@ -1,18 +1,9 @@
 <div class="file">
-	<p><%= medium.name.capitalize %></p>
-	<%= medium.file.content_type %>
-	<% if medium.file.file.nil? %>
-		<p>Oops, we got an unexpected error</p>
-	<% elsif medium.file.content_type.start_with? 'image/svg'%>
-		<%= image_tag medium.file, alt: medium.name %>
-	<% elsif medium.file.content_type.start_with? 'image'%>
-		<%= image_tag medium.file.thumb, alt: medium.name %>
-	<% elsif medium.file.content_type.start_with? 'video' %>
-		<%= video_tag medium.file.thumb, alt: medium.name, controls: true %>
-	<% elsif medium.file.content_type.start_with? 'application/pdf' %>
-		<%= image_tag medium.file.pdf_thumb, alt: medium.name %>
-	<% end %>
-
+	<p>
+		<%= medium.name.capitalize %><span>(.<%= medium.extension %>)</span>
+	</p>
+	<%= medium_display_by_type(medium) %>
+	<%= medium_size_format(medium) %>
 	<div class="links">
 		<% if policy(medium).download? %>
 			<%= link_to 'Download', download_path(path: medium.file, id: medium.id) %>
