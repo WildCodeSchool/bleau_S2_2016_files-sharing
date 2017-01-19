@@ -15,7 +15,7 @@ class Medium < ApplicationRecord
 	scope :search_all, -> (search) { where(Medium.arel_table[:name].matches("%#{search}%")) }
 
 	# chercher dans tous les fichiers uploadé par le current user
-  	scope :search_in_my_files, -> (current_user, search) { 
+  	scope :search_in_my_files, -> (current_user, search = "") { 
 		where(
 			Medium.arel_table[:user_id]
 				.eq(current_user.id)
@@ -34,11 +34,12 @@ class Medium < ApplicationRecord
 	}
 
 	# chercher tous les fichiers partagés spécifiquement avec l'utilisateur	
-	scope :search_in_files_shared_with_me, -> (current_user, search) {
+	scope :search_in_files_shared_with_me, -> (current_user, search = "") {
 		joins(:shared_withs)
 		.where(SharedWith.arel_table[:entity_id]
 			.eq(current_user.entity.id)
-			.and(Medium.arel_table[:name].matches("%#{search}%"))
+			.and(Medium.arel_table[:name]
+			.matches("%#{search}%"))
 		)
 	}
 
