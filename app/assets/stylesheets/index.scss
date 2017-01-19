@@ -78,6 +78,7 @@
 			padding: 1em;
 			text-align: center;
 			position: relative;
+			margin-bottom: 1em;
 
 			.link_to_see_all_my_files
 			{
@@ -94,20 +95,10 @@
 			}
 		}
 
-		#index_my_files
+		#uploaded, #shared_with_me
 		{
-			margin-bottom: 1em;
-
-			#uploaded
-			{
-				display: flex;
-				flex-wrap: wrap;
-			}
-		}
-
-		#index_last_files_shared_with_me
-		{
-
+			display: flex;
+			flex-wrap: wrap;
 		}
 	}
 }

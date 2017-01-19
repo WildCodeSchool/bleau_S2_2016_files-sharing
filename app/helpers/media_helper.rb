@@ -13,7 +13,7 @@ module MediaHelper
 			when /^application\/pdf/
 				image_tag medium.file.pdf_thumb, alt: medium.name
 			else
-				image_tag asset_path("defaut_media_display.svg"), alt: medium.name
+				image_tag asset_path("default_media_display.svg"), alt: medium.name
 		end
 	end
 

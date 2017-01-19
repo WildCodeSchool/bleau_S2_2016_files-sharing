@@ -11,8 +11,10 @@
 </div>
 <div id="index_last_files_shared_with_me">
 	<p>Last files shared with me</p>
-	<!-- affichage des fichiers partagés avec l'utilisateur, groupe + individuel -->
-	<% Medium.search_in_files_shared_with_me(current_user).order_by_date_desc.limit(10).each do|medium| %>
-		<%= render 'file_display', medium: medium %>
-	<% end %>
+	<div id="shared_with_me">
+		<!-- affichage des fichiers partagés avec l'utilisateur, groupe + individuel -->
+		<% Medium.search_in_files_shared_with_me(current_user).order_by_date_desc.limit(10).each do|medium| %>
+			<%= render 'file_display', medium: medium %>
+		<% end %>
+	</div>
 </div>
