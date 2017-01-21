@@ -24,7 +24,7 @@ class MainController < ApplicationController
 	def home
 	end
 
-	def search_home_page
+	def search_home_pagination
 	end
 
 end

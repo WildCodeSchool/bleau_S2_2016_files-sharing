@@ -10,19 +10,21 @@
 			</div>
 		<% end %>
 	<%= link_to 'Add a file', new_medium_path, class: "btn btn-primary", method: :get %>
-	<%= search_my_files_pagination_helper %>
+	<div id="paginator_my_files">
+		<%= search_my_files_pagination_helper %>
+	</div>
 </div>
 <div id="home_last_files_shared_with_me">
 	<p class="home_part_title">Last files shared with me</p>
-	<% if search_in_files_shared_with_me_or_with_my_groups_for_pagination_helper.empty? %>
+	<% if search_in_files_shared_with_me_or_with_my_groups_ajax_shared_for_pagination_helper.empty? %>
 		<p class="home_no_file">Nobody as shared a file with you yet</p>
 	<% else %>
 		<!-- affichage des fichiers partagés avec l'utilisateur, groupe + individuel -->
 		<div id="shared_with_me">
-			<% search_in_files_shared_with_me_or_with_my_groups_for_pagination_helper.each do|medium| %>
-				<%= render 'file_display', medium: medium %>
-			<% end %>
+			<%= search_in_files_shared_with_me_or_with_my_groups_ajax_shared_for_pagination_helper %>
 		</div>
 	<% end %>
-	<%= paginate search_in_files_shared_with_me_or_with_my_groups_for_pagination_helper, param_name: :shared_files_page, params: {controller: 'main', action: 'search_home_page'}, remote: true %>
+	<div id="paginator_shared_files">
+		<%= search_in_files_shared_with_me_or_with_my_groups_pagination_helper %>
+	</div>
 </div>
