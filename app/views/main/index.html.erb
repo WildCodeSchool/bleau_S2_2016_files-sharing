@@ -43,6 +43,6 @@
 	
 	<!-- Corps du site avec visuel des groupes et fichiers -->
 	<div id="index_main">
-		<%= render "home" %>
+		<%= render "home", my_files: @my_files, files_shared_with_me: @files_shared_with_me %>
 	</div>
 </div>

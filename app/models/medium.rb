@@ -12,7 +12,7 @@ class Medium < ApplicationRecord
 	before_save :update_file_size_and_extension
 
 	# chercher dans tous les fichiers du site
-	scope :search_all, -> (search) { where(Medium.arel_table[:name].matches("%#{search}%")) }
+	scope :search_all, -> (search) { where(Medium.arel_table[:name].matches("%#{search}%").and(Medium.arel_table[:visible].eq(true))) }
 
 	# chercher dans tous les fichiers uploadé par le current user
   	scope :search_in_my_files, -> (current_user, search = "") { 
@@ -38,6 +38,15 @@ class Medium < ApplicationRecord
 		joins(:shared_withs)
 		.where(SharedWith.arel_table[:entity_id]
 			.eq(current_user.entity.id)
+			.and(Medium.arel_table[:name]
+			.matches("%#{search}%"))
+		)
+	}
+
+	scope :search_in_files_shared_with_me_or_with_my_groups, -> (current_user, search = "") {
+		joins(:shared_withs)
+		.where(SharedWith.arel_table[:entity_id]
+			.eq(current_user.entity.id).or(SharedWith.arel_table[:entity_id].in(related_groups_entities_ids(current_user)))
 			.and(Medium.arel_table[:name]
 			.matches("%#{search}%"))
 		)

@@ -71,7 +71,7 @@
 		width: 95%;
 		margin: 2em auto;
 
-		#index_my_files, #index_last_files_shared_with_me
+		#home_my_files, #home_last_files_shared_with_me
 		{
 			background-color: $secondary_background_color;
 			border-radius: 2px;
@@ -88,10 +88,26 @@
 				left: 1em;
 			}
 
-			p
+			.home_part_title
 			{
 				font-weight: bold;
-				color: black;
+			}
+
+			.home_no_file
+			{
+				font-style: italic;
+				font-size: 0.9em;
+			}
+
+			nav
+			{
+				display: flex;
+				justify-content: center;
+
+				ul
+				{
+					margin: 1em 0 0 0;
+				}
 			}
 		}
 

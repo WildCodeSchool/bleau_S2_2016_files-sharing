@@ -12,6 +12,11 @@
 	border-radius: 2px;
 	max-width: 300px;
 
+	.file_attr, .file_title
+	{
+		font-weight: bold;
+	}
+
 	.file_attr
 	{
 		margin: 0;

@@ -3,6 +3,8 @@ class MainController < ApplicationController
 	before_action :authenticate_user!
 
 	def index
+		@my_files = Medium.search_in_my_files(current_user).page(params[:page])
+		@files_shared_with_me = Medium.search_in_files_shared_with_me_or_with_my_groups(current_user).page(params[:page])
 	end
 
 	def search_files
@@ -20,6 +22,9 @@ class MainController < ApplicationController
 	end
 
 	def home
+	end
+
+	def search_home_page
 	end
 
 end

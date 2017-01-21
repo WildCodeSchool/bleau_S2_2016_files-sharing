@@ -17,7 +17,7 @@ module MediaHelper
 		end
 	end
 
-	def medium_size_format(medium)
+	def medium_size_format_helper(medium)
 		size = medium.size.to_i
 		if size/1024 <= 1
 			"#{size} octets"
@@ -26,6 +26,22 @@ module MediaHelper
 		elsif size/1024**3 <= 1
 			"#{(size.to_f/1024**2).round(1)} Mo"
 		end
+	end
+
+	def search_my_files_ajax_uploaded_for_pagination_helper
+		html_content = []
+		Medium.search_in_my_files(current_user).page(params[:my_files_page]).each do |m|
+			html_content << render('file_display', medium: m)
+		end
+		html_content.join.html_safe
+	end
+
+	def search_my_files_pagination_helper
+		paginate Medium.search_in_my_files(current_user).page(params[:my_files_page]), param_name: :my_files_page, params: {controller: 'main', action: 'search_home_page'}, remote: true
+	end
+
+	def search_in_files_shared_with_me_or_with_my_groups_for_pagination_helper
+		Medium.search_in_files_shared_with_me_or_with_my_groups(current_user).page(params[:shared_files_page])
 	end
 
 end

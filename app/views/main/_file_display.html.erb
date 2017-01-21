@@ -1,5 +1,5 @@
 <div class="file">
-	<p>
+	<p class="file_title">
 		<%= medium.name.capitalize %>
 	</p>
 	<%= medium_display_by_type(medium) %>
@@ -7,7 +7,7 @@
 		Format</br>
 		<span><%= medium.extension %></span></br>
 		Size</br>
-		<span><%= medium_size_format(medium) %></span>
+		<span><%= medium_size_format_helper(medium) %></span>
 	</p>
 	<div class="links">
 		<% if policy(medium).download? %>

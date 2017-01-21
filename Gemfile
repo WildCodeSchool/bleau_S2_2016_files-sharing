@@ -35,6 +35,7 @@ gem 'carrierwave-video'
 gem 'jquery-ui-rails'
 gem 'pundit'
 gem 'bootstrap', '~> 4.0.0.alpha6'
+gem 'kaminari'
 
 # mise en place de la gem pg pour bdd heroku
 group :development do
