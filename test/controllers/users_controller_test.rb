@@ -5,10 +5,6 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
     @user = users(:one)
   end
 
-  test "should get index" do
-    assert_equal 2,2
-  end
-
   # test "should get new" do
   #   get new_user_url
   #   assert_response :success
