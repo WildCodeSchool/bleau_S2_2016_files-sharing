@@ -13,6 +13,7 @@
  *= require_tree .
  *= require_self
  *= require_tree ./media
+  *= require_tree ./devise
  */
 
  /*
@@ -21,3 +22,9 @@
  */
 
 @import "bootstrap";
+@import "var";
+
+#menu_not_index
+{
+	background-color: $main_background_color;
+}

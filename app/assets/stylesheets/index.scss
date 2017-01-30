@@ -6,39 +6,6 @@
 	flex: 1;
 	background-color: $main_background_color;
 
-	/////////////////////////
-	// Fenêtre des groupes //
-	/////////////////////////
-
-	#modal_wrapper
-	{
-		position: fixed;
-		z-index: 99999;
-		display: none;
-		height: 100%;
-		width: 100%;
-		top: 0;
-		left: 0;
-		background-color: $modal_wrapper_background;
-
-		#my_groups
-		{
-			border-radius: 5px;
-			background: $secondary_background_color;
-			padding: 2em;
-			position: relative;
-
-			.close_modal_link
-			{
-				position: absolute;
-				top: -0.5em;
-				right: -0.5em;
-				font-weight: bold;
-				font-size: 1.5em;
-			}
-		}
-	}
-
 	/////////////////////////////////
 	// Barre de recherche de média //
 	/////////////////////////////////
