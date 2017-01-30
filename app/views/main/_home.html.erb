@@ -3,7 +3,6 @@
 		<% if search_my_files_ajax_uploaded_for_pagination_helper.empty? %>
 			<p class="home_no_file">You don't have any file yet</p>
 		<% else %>
-			<%= link_to 'See all my files', media_path, class: "link_to_see_all_my_files" %>
 			<!-- affichage des fichiers que l'utilisateur a uploadé -->
 			<div id="uploaded">
 				<%= search_my_files_ajax_uploaded_for_pagination_helper %>
