@@ -11,4 +11,18 @@
 	{
 		display: flex;
 	}
+
+	#paginator_search_files
+	{
+		nav
+		{
+			display: flex;
+			justify-content: center;
+
+			ul
+			{
+				margin: 1em 0 0 0;
+			}
+		}
+	}
 }

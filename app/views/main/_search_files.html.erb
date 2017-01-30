@@ -6,4 +6,7 @@
 			<%= render 'file_display', medium: medium %>
 		<% end %>
 	</div>
+	<div id="paginator_search_files">
+		<%= paginate @media, remote: true %>
+	</div>
 </div>
