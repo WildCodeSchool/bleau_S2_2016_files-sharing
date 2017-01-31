@@ -13,6 +13,12 @@
 		background-color: $secondary_background_color;
 		border-radius: 5px;
 		padding: 2em;
+		max-width: 90%;
+		
+		h2
+		{
+			margin-bottom: 1em;
+		}
 
 		form input
 		{

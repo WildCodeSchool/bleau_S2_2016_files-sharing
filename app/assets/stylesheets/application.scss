@@ -24,6 +24,11 @@
 @import "bootstrap";
 @import "var";
 
+html *
+{
+	font-family: 'Quicksand', sans-serif;
+}
+
 #menu_not_index
 {
 	background-color: $main_background_color;

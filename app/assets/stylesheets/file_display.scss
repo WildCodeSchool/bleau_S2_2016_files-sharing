@@ -1,7 +1,7 @@
 @import "var";
 @import "mixin";
 
-.file
+.file_display
 {
 	margin: 0.5em;
 	display: flex;
@@ -52,7 +52,7 @@
 	}
 }
 
-.file:hover
+.file_display:hover
 {
 	@include transform(scale(1.025));
 }

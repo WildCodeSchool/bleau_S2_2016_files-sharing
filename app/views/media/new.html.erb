@@ -1,6 +1,11 @@
-<div id="new_medium">
-	<%= render "main/menu" %>
-	<h3>Add a new file</h3>
-	<%= render 'form', medium: @medium %>
-	<%= link_to 'Cancel', root_path %>
+<div id="menu_not_index">
+  <%= render "main/menu" %>
+</div>
+
+<div id="new_medium_wrapper">
+	<div id="new_medium_body">
+		<h1 id="new_medium_title">Add a new file</h1>
+		<%= render 'form', medium: @medium %>
+		<%= link_to 'Cancel', root_path, class: "cancel" %>
+	</div>
 </div>

@@ -30,7 +30,7 @@ class MediaController < ApplicationController
   # GET /media/new
   def new
     @medium = Medium.new
-    Entity.all_groups.each do |e|
+    Group.my_related_groups(current_user).each do |e|
       @medium.shared_withs.build({entity_id: e.id})
     end
     @users = User.all
@@ -64,6 +64,15 @@ class MediaController < ApplicationController
   # PATCH/PUT /media/1
   # PATCH/PUT /media/1.json
   def update
+    test = []
+    medium_params[:shared_withs_attributes].each do |attribute|
+      test << attribute['rights']
+      # if attribute[:selected] == 0
+      #   Shared_with.find(attribute.id).destroy
+      #   attribute = nil
+      # end
+    end
+    abort medium_params[:shared_with_attributes][:0].inspect
     respond_to do |format|
       if @medium.update(medium_params)
         format.html { redirect_to root_path, notice: 'Medium was successfully updated.' }

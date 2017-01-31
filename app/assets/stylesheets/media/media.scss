@@ -1,0 +1,52 @@
+@import 'var';
+
+#new_medium_wrapper, #edit_medium_wrapper
+{
+	flex: 1;
+	background-color: $main_background_color;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+
+	#new_medium_body, #edit_medium_body
+	{
+		max-width: 90%;
+		background-color: $secondary_background_color;
+		padding: 2em;
+		display: flex;
+		flex-direction: column;
+		text-align: center;
+		border-radius: 5px;
+		margin-bottom: 2em;
+
+		#new_medium_title, #edit_medium_title, .field, .actions, .users, .groups_field, .visible_to_all
+		{
+			margin-bottom: 1em;
+		}
+
+		label
+		{
+			margin-right: 1em;
+		}
+
+		.cancel
+		{
+			text-decoration: none;
+			border-radius: 2px;
+			padding: 0.3em;
+		}
+
+		.cancel:hover
+		{
+			background-color: $color_main1;
+			color: $color_main2;
+			font-weight: bold;
+		}
+
+		.groups_field
+		{
+			
+		}
+	}
+	
+}
