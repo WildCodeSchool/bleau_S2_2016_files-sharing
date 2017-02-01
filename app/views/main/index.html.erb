@@ -1,5 +1,10 @@
 <div id="index_body">
 
+	<% if @join_requests.any? %>
+		<div id="notifications">
+			<%= link_to 'My Groups', "#", id: "link_to_my_group_requests" %>
+		</div>
+	<% end %>
 	<div id="menu">
 		<%= link_to 'Home', home_modal_path, remote: true %>
 		<%= link_to 'My Groups', "#", id: "link_to_my_groups" %>

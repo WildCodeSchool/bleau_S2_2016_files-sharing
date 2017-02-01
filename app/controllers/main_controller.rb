@@ -3,6 +3,8 @@ class MainController < ApplicationController
 	before_action :authenticate_user!
 
 	def index
+		@join_requests = UsersInGroup.get_not_validated(current_user)
+		
 	end
 
 	def search_files

@@ -8,8 +8,13 @@ class Medium < ApplicationRecord
 	accepts_nested_attributes_for :shared_withs, reject_if: lambda{ |a| a[:selected] == '0'}
 
 	# chercher dans tous les fichiers du site
-	scope :search_all, -> (search) { where("name REGEXP ?", "^#{search}") }
-	scope :order_by_date, -> { order("created_at DESC") }
+	# scope :search_all, -> (search) { where("name REGEXP ?", "^#{search}") }
+
+  	scope :search_all, -> (search) {
+  		where(
+  			Medium.arel_table[:name].where(Medium.matches("%#{search}%"))
+		)
+  	}
 
 	# chercher dans tous les fichiers uploadé par le current user
   	scope :search_in_my_files, -> (current_user, search) { 

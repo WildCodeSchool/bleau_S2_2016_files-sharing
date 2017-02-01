@@ -12,9 +12,8 @@ module FileSharing
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.
 
-    # permet de charger toutes les classes présentent dans /lib
+    # permet de charger toutes les classes présentes dans /lib
     # attention config écrasée si un environnement spécifie des apps particulières. 
     config.autoload_paths  = %W(#{config.root}/lib)
-
   end
 end
