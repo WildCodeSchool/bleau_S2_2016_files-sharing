@@ -2,6 +2,9 @@ class Medium < ApplicationRecord
 	# carrierwave
 	mount_uploader :file, FileUploader
 
+	validates :name, presence: true
+	validates :file, presence: true
+
 	belongs_to :user
 	has_many :shared_withs, dependent: :destroy, inverse_of: :medium
 	has_many :entities, through: :shared_withs
