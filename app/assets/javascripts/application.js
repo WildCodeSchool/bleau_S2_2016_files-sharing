@@ -10,6 +10,7 @@
 // Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
 // about supported directives.
 //
+//= require_self
 //= require jquery
 //= require jquery_ujs
 //= require bootstrap
@@ -17,3 +18,5 @@
 //= require_tree .
 // attention à n'inclure que les ui utiliséés in fine (autocomplete, ...)
 //= require jquery-ui
+
+alert("canard")
