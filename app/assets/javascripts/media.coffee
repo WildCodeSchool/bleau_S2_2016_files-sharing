@@ -1,5 +1,5 @@
 # check si DOM ready
-jQuery ->
+$(document).on('turbolinks:load', ->
 
 	# ajout d'un nouvel user
 	i = 1000
@@ -40,3 +40,4 @@ jQuery ->
 		if e.which == 13
 			e.preventDefault()
 		)
+)
