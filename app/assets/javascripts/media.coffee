@@ -1,3 +1,5 @@
+alert("canard")
+
 # check si DOM ready
 $(document).on('turbolinks:load', ->
 
