@@ -6,15 +6,15 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   # permet l'enregistrement du name, qui est un champ non devise lors de l'inscription
   def sign_up_params
-    params.require(:user).permit(:name, :email, :password, :password_confirmation)
+    params.require(:user).permit(:email, :password, :password_confirmation, entity_attributes: [:name])
   end
 
-  # permet l'enregistrement du name, qui est un champ non devse lors de l'édit
+  # permet l'enregistrement du name, qui est un champ non devise lors de l'édit
   def account_update_params
-    params.require(:user).permit(:name, :email, :password, :password_confirmation, :current_password)
+    params.require(:user).permit(:email, :password, :password_confirmation, :current_password, entity_attributes: [:name])
   end
 
-  # GET /resource/sign_up
+  #GET /resource/sign_up
   # def new
   #   super
   # end

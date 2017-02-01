@@ -1,0 +1,7 @@
+ <% if params[:my_files_page] %>
+	$('#uploaded').html("<%= j search_my_files_ajax_uploaded_for_pagination_helper %>");
+	$('#paginator_my_files').html("<%= j search_my_files_pagination_helper %>");
+<% else %>
+	$('#shared_with_me').html("<%= j search_in_files_shared_with_me_or_with_my_groups_ajax_shared_for_pagination_helper %>");
+	$('#paginator_shared_files').html("<%= j search_in_files_shared_with_me_or_with_my_groups_pagination_helper %>");
+<% end %>

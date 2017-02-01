@@ -15,6 +15,7 @@ class GroupsController < ApplicationController
   # GET /groups/new
   def new
     @group = Group.new
+    @group.entity = Entity.new
   end
 
   # GET /groups/1/edit
@@ -25,7 +26,7 @@ class GroupsController < ApplicationController
   # POST /groups.json
   def create
     @group = Group.new(group_params)
-
+    @group.master = current_user.entity
     respond_to do |format|
       if @group.save
         format.html { redirect_to @group, notice: 'Group was successfully created.' }
@@ -69,6 +70,6 @@ class GroupsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def group_params
-      params.require(:group).permit(:name)
+      params.require(:group).permit(entity_attributes: [:name])
     end
 end

@@ -1,0 +1,28 @@
+@import "var";
+
+#search_files_results
+{
+	margin: 0 auto;
+	background-color: $secondary_background_color;
+	padding: 1em;
+	border-radius: 2px;
+
+	.files
+	{
+		display: flex;
+	}
+
+	#paginator_search_files
+	{
+		nav
+		{
+			display: flex;
+			justify-content: center;
+
+			ul
+			{
+				margin: 1em 0 0 0;
+			}
+		}
+	}
+}

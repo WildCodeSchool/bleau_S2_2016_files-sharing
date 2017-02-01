@@ -1,14 +1,20 @@
 class ApplicationController < ActionController::Base
-  protect_from_forgery with: :exception
 
-  # permet la prise en compte des champs perso de l'entité User par rapport
-  # à la connection et l'inscription de devise
-  before_action :configure_permitted_parameters, if: :devise_controller?
+	include Pundit
+	
+  	protect_from_forgery with: :exception
+	rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
 
-  protected
+	private
 
-  def configure_permitted_parameters
-    devise_parameter_sanitizer.permit(:sign_up, keys: [:name])
-    devise_parameter_sanitizer.permit(:sign_in, keys: [:name])
-  end
+	def user_not_authorized
+		flash[:warning] = "You are not allowed to perform this action."
+		redirect_to request.referrer
+	end
+
+	# Overwriting the sign_out redirect path method
+	def after_sign_out_path_for(resource_or_scope)
+		new_user_registration_path
+	end
+
 end

@@ -1,4 +1,4 @@
-<%= form_for(medium) do |f| %>
+<%= form_for @medium do |f| %>
   <% if medium.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(medium.errors.count, "error") %> prohibited this medium from being saved:</h2>
@@ -13,15 +13,51 @@
 
   <div class="field">
     <%= f.label :name %>
-    <%= f.text_field :name %>
+    <%= f.text_field :name, class: "form-control" %>
   </div>
 
   <div class="field">
     <%= f.label :file %>
-    <%= f.file_field :file %>
+    <%= f.file_field :file, class: "form-control"%>
+  </div>
+  
+  <div class="visible_to_all">
+    <%= f.label 'Can everybody see this file ?' %>
+    <%= f.select :visible_to_all, [['True', true],['False', false]], {}, class: "form-control" %>
   </div>
 
-  <div class="actions">
-    <%= f.submit %>
+  <% if @medium.shared_withs.present? %>
+    <div class="groups_field">
+      <% if action_name == "edit" %>
+        <p>Do you still want to share this file with them ?</p>
+      <% else %>
+        <p>Do you want to share this file with some of the following groups you are related to ?</p>
+      <% end %>
+      <%= f.fields_for :shared_withs do |shared| %>
+        <div>
+          <%= shared.check_box :selected, checked: !shared.object.id.blank?, class: "form-check-input" %>
+          <%= shared.label shared.object.entity.name %>
+          <%= shared.select :rights, options_for_select([['Read only', 'R'], ['Read and modify', 'RW']]), class: "form-control" %>
+          <%= shared.hidden_field :entity_id, value: shared.object.entity.id %>
+        </div>        
+      <% end %>
+    </div>
+  <% end %>
+
+  <%= f.hidden_field :user_id, value: current_user.id %>
+
+  <div class="users">
+    <%= label :users, :share_with_an_user %>
+    <%= text_field_tag :search_user, nil, placeholder: 'search a specific user', id: 'search_users', class: "form-control" %>
+    <div id="users_added"></div>
   </div>
+  
+  <div class="actions">
+    <% if action_name == "edit" %>
+      <%= f.submit "Accept all changes" %>
+    <% else %>
+      <%= f.submit "Create file" %>
+    <% end %>
+  </div>
+
 <% end %>

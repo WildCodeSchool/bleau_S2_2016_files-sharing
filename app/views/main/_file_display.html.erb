@@ -1,0 +1,19 @@
+<div class="file_display">
+	<p class="file_title">
+		<%= medium.name.capitalize %>
+	</p>
+	<%= medium_display_by_type(medium) %>
+	<p class="file_attr">
+		Format</br>
+		<span><%= medium.extension %></span></br>
+		Size</br>
+		<span><%= medium_size_format_helper(medium) %></span>
+	</p>
+	<div class="links">
+		<% if policy(medium).download? %>
+			<%= link_to 'Download', download_path(path: medium.file, id: medium.id) %>
+			<%= link_to 'Update', edit_medium_path(medium) %>
+			<%= link_to 'Destroy', medium, method: :delete, data: { confirm: 'Are you sure?' } %>
+		<% end %>
+	</div>
+</div>

@@ -12,8 +12,10 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :name %>
-    <%= f.text_field :name %>
+    <%= f.fields_for :entity do |e| %>
+      <%= e.label :name %>
+      <%= e.text_field :name %>
+    <% end %>
   </div>
 
   <div class="actions">

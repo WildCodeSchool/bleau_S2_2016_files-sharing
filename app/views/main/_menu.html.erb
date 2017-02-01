@@ -1,0 +1,10 @@
+<div id="menu">
+	<% if controller_name == "main" %>
+		<%= link_to 'Home', home_modal_path, remote: true %>
+	<% else %>
+		<%= link_to 'Home', root_path %>
+	<% end %>
+	<%= link_to 'My Groups', "#", id: "link_to_my_groups" %>
+</div>
+
+<%= render "main/groups_modal" %>

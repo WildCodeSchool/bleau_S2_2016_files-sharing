@@ -27,17 +27,30 @@ gem 'jbuilder', '~> 2.5'
 # gem 'bcrypt', '~> 3.1.7'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
-gem 'mysql2'
+
 gem 'devise'
 gem 'carrierwave', '>= 1.0.0.rc', '< 2.0'
 gem 'mini_magick'
 gem 'carrierwave-video'
+gem 'jquery-ui-rails'
+gem 'pundit'
+gem 'bootstrap', '~> 4.0.0.alpha6'
+gem 'kaminari'
+
+# mise en place de la gem pg pour bdd heroku
+group :development do
+  gem 'mysql2'
+end
+group :production do
+  gem 'pg'
+end
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
-  	gem 'byebug', platform: :mri
+  gem 'byebug', platform: :mri
 	gem 'pry-rails'
-
+  gem 'rspec-rails', '~> 3.5'
+  gem 'capybara'
 end
 
 group :development do

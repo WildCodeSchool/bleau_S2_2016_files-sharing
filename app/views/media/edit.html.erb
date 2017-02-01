@@ -1,6 +1,11 @@
-<h1>Editing Medium</h1>
+<div id="menu_not_index">
+  <%= render "main/menu" %>
+</div>
 
-<%= render 'form', medium: @medium %>
-
-<%= link_to 'Show', @medium %> |
-<%= link_to 'Back', media_path %>
+<div id="edit_medium_wrapper">
+	<div id="edit_medium_body">
+		<h1 id="edit_medium_title">Edit the file</h1>
+		<%= render 'form', medium: @medium %>
+		<%= link_to 'Cancel', root_path, class: "cancel" %>
+	</div>
+</div>

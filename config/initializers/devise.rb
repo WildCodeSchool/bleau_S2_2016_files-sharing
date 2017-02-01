@@ -6,7 +6,7 @@ Devise.setup do |config|
   # confirmation, reset password and unlock tokens in the database.
   # Devise will use the `secret_key_base` as its `secret_key`
   # by default. You can change it below and use your own secret key.
-  # config.secret_key = '5334e42f7b1055fa12af3a9b9e7242ea279cb189a19465c2feb3d5cc5e41ef009d5e9aefe2523fa19186275901e3feb6b489f82beaf54ea3bad0d8ca30b26d20'
+  config.secret_key = '4d90459b01395b1d0c54b8ff907a6f07ca584a383c1af294310dc559312a54feaddfb5233a0f37ffc3c26eb3ed0a8ca4a131b1a9af8cdce193ed7a5bd47a4397'
 
   # précise à devise d'utiliser la classe CustomFailure décrite dans /lib
   config.warden do |manager|
@@ -17,7 +17,7 @@ Devise.setup do |config|
   # Configure the e-mail address which will be shown in Devise::Mailer,
   # note that it will be overwritten if you use your own mailer class
   # with default "from" parameter.
-  config.mailer_sender = 'please-change-me-at-config-initializers-devise@example.com'
+  config.mailer_sender = 'xan212@gmail.com'
 
   # Configure the class responsible to send e-mails.
   # config.mailer = 'Devise::Mailer'

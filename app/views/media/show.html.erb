@@ -1,5 +1,3 @@
-<p id="notice"><%= notice %></p>
-
 <p>
   <strong>Nom:</strong>
   <%= @medium.name %>
@@ -13,7 +11,7 @@
 
 <p>
   <strong>User:</strong>
-  <%= @medium.user.name %>
+  <%= @medium.user.entity.name %>
 </p>
 
 <%= link_to 'Edit', edit_medium_path(@medium) %> |

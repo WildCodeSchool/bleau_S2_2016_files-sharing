@@ -1,0 +1,78 @@
+@import "mixin";
+@import "var";
+
+#index_body
+{
+	flex: 1;
+	background-color: $main_background_color;
+
+	/////////////////////////////////
+	// Barre de recherche de média //
+	/////////////////////////////////
+	#search_files
+	{
+		display: flex;
+		justify-content: center;
+		flex-wrap: wrap;
+
+		>*
+		{
+			margin: 0 0.2em;
+		}
+
+		#search_files_text
+		{
+			width: 70%;
+		}
+
+		#search_files_select
+		{
+			width: 15%;
+		}
+	}
+
+	////////////////////////////////
+	// Visualisation des fichiers //
+	////////////////////////////////
+	#index_main{
+		width: 95%;
+		margin: 2em auto;
+
+		#home_my_files, #home_last_files_shared_with_me
+		{
+			background-color: $secondary_background_color;
+			border-radius: 2px;
+			padding: 1em;
+			text-align: center;
+			margin-bottom: 1em;
+
+			.home_part_title
+			{
+				font-weight: bold;
+			}
+
+			.home_no_file
+			{
+				font-style: italic;
+				font-size: 0.9em;
+			}
+
+			nav
+			{
+				display: flex;
+				justify-content: center;
+
+				ul
+				{
+					margin: 1em 0 0 0;
+				}
+			}
+		}
+
+		#uploaded, #shared_with_me
+		{
+			display: flex;
+			flex-wrap: wrap;
+		}
+	}
+}
