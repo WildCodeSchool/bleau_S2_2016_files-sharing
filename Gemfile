@@ -36,6 +36,7 @@ gem 'jquery-ui-rails'
 gem 'pundit'
 gem 'bootstrap', '~> 4.0.0.alpha6'
 gem 'kaminari'
+gem 'yui-compressor'
 
 group :production do
   gem 'pg'
