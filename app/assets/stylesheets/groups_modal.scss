@@ -1,0 +1,43 @@
+@import "var";
+
+/////////////////////////
+// Fenêtre des groupes //
+/////////////////////////
+
+#modal_wrapper
+{
+	position: fixed;
+	z-index: 99999;
+	display: none;
+	height: 100%;
+	width: 100%;
+	top: 0;
+	left: 0;
+	background-color: $modal_wrapper_background;
+
+	#groups_modal_box
+	{
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+		border-radius: 5px;
+		background: $secondary_background_color;
+		padding: 2em;
+		width: 50em;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		max-width: 90%;
+
+		.close_modal_link
+		{
+			position: absolute;
+			top: -0.5em;
+			right: -0.5em;
+			font-weight: bold;
+			font-size: 1.5em;
+		}
+	}
+}

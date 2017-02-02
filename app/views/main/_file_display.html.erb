@@ -1,12 +1,14 @@
-<div class="file">
-	<p><%= medium.name.capitalize %></p>
-	<% if medium.file.file == nil %>
-		<p>Oops, we got an unexpected error</p>
-	<% elsif medium.file.content_type.start_with? 'image' %>
-		<%= image_tag medium.file.thumb, alt: medium.name, class: "image_file" %>
-	<% elsif medium.file.content_type.start_with? 'video' %>
-		<%= video_tag medium.file.thumb, alt: medium.name, class: "video_file", controls: true %>
-	<% end %>
+<div class="file_display">
+	<p class="file_title">
+		<%= medium.name.capitalize %>
+	</p>
+	<%= medium_display_by_type(medium) %>
+	<p class="file_attr">
+		Format</br>
+		<span><%= medium.extension %></span></br>
+		Size</br>
+		<span><%= medium_size_format_helper(medium) %></span>
+	</p>
 	<div class="links">
 		<% if policy(medium).download? %>
 			<%= link_to 'Download', download_path(path: medium.file, id: medium.id) %>

@@ -1,6 +1,7 @@
 @import "var";
+@import "mixin";
 
-.file
+.file_display
 {
 	margin: 0.5em;
 	display: flex;
@@ -10,15 +11,27 @@
 	padding: 0.6em;
 	background-color: $background_color3;
 	border-radius: 2px;
+	max-width: 300px;
+	@include transition(all 0.3s);
 
-	p
+	.file_attr, .file_title
 	{
 		font-weight: bold;
 	}
 
+	.file_attr
+	{
+		margin: 0;
+		font-size: 0.9em;
+	}
+
+	.file_attr span
+	{
+		font-weight: normal;
+	}
+
 	.links
 	{
-		margin-top: 0.5em;
 		display: flex;
 		flex-direction: column;
 		align-items: center;
@@ -37,4 +50,9 @@
 			color: $color_main2;
 		}
 	}
+}
+
+.file_display:hover
+{
+	@include transform(scale(1.025));
 }

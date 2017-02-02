@@ -1,0 +1,28 @@
+@import "var";
+
+#edit
+{
+	background-color: $main_background_color;
+	text-align:center;
+	padding: 20px 0 20px 0;
+	display: flex;
+	justify-content: center;
+
+	> div
+	{
+		background-color: $secondary_background_color;
+		border-radius: 5px;
+		padding: 2em;
+		max-width: 90%;
+		
+		h2
+		{
+			margin-bottom: 1em;
+		}
+
+		form input
+		{
+			margin-bottom: 1em ;
+		}
+	}
+}

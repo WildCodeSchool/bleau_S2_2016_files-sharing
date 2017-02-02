@@ -1,9 +1,15 @@
 <div id="search_files_results">
-	<p>Results for "<%= params[:search] %>" in </p>
-	<!-- affichage des fichiers que l'utilisateur a uploadé -->
-	<div class="files">
-		<% @media.each do |medium| %>
-			<%= render 'file_display', medium: medium %>
-		<% end %>
+	<p>Results for "<%= params[:search] %>"</p>
+	<% if @media.empty? %>
+		<p>There is no file with this name.</p>
+	<% else %>
+		<div class="files">
+			<% @media.each do |medium| %>
+				<%= render 'file_display', medium: medium %>
+			<% end %>
+		</div>
+	<% end %>
+	<div id="paginator_search_files">
+		<%= paginate @media, remote: true %>
 	</div>
 </div>

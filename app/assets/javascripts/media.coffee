@@ -1,6 +1,8 @@
 # check si DOM ready
-jQuery ->
-	# ajout d'un nouveau user
+
+$(document).on('turbolinks:load', ->
+
+	# ajout d'un nouvel user
 	i = 1000
 	add_user = (name, id)->
 		if !$("#users_added > div#"+name).length
@@ -13,9 +15,9 @@ jQuery ->
 					</select> 
 					<input type='hidden' name='medium[shared_withs_attributes]["+i+"][entity_id]' value="+id+">
 					<a href='#' class='remove_user'>Remove this user</a>
-				</div>
-				")
-	++i
+				</div>")
+			i++
+
 	#supression du user ciblé
 	$("#users_added").on("click",".remove_user" ,(e) ->
 		$(this).parent().remove()
@@ -38,3 +40,4 @@ jQuery ->
 		if e.which == 13
 			e.preventDefault()
 		)
+)

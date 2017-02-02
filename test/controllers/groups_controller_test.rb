@@ -6,7 +6,6 @@ class GroupsControllerTest < ActionDispatch::IntegrationTest
     @group1.entity = entities(:three)
     @group2 = groups(:two)
     @group2.entity = entities(:four)
-
   end
 
   # test "should get new" do

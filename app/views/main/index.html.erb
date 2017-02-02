@@ -5,11 +5,9 @@
 			<%= link_to 'My Groups', "#", id: "link_to_my_group_requests" %>
 		</div>
 	<% end %>
-	<div id="menu">
-		<%= link_to 'Home', home_modal_path, remote: true %>
-		<%= link_to 'My Groups', "#", id: "link_to_my_groups" %>
-		<%= link_to 'My Files', media_path %>
-	</div>
+
+	<%= render "menu" %>
+	
 	<!-- Barre de recherche de fichiers-->
 	<%= form_tag(search_files_modal_path, method: "get", id: 'search_files', remote: true) do |f| %>
 		<!-- arg1: nom, arg2: valeur par défaut, arg3+: autres options -->
@@ -19,37 +17,9 @@
 		<!-- arg1: nom, arg2+: autres options -->
 		<%= submit_tag "Go", id: 'submit', class: "btn-primary submit" %>
 	<% end %>
-
-	<!-- Modal des groupes accessible depuis le menu -->
-	<div id="modal_wrapper">
-		<div id="my_groups">
-			<a href="#" class="btn close_modal_link">X</a>
-			<p>My groups</p>
-			<!-- visualisation des groupes appartenants à l'utilisateur courant -->
-			<p>Groups I own</p>
-			<% owned_groups_entities.each do |og| %>
-				<div>
-					<%= link_to og.name, og.type %>
-				</div>
-			<% end %>
-			<!-- visualisation des groupes auxquels l'utilisateur courant appartient -->
-			<p>Groups I'm in</p>
-			<% in_groups_entities.each do |ig| %>
-				<div>
-					<%= link_to ig.name, ig.type %>
-				</div>
-			<% end %>
-			<!-- lien vers l'ajout de nouveaux groupes -->
-			<%= form_tag(send_group_request_path) do |f| %>
-				<%= text_field_tag :search, nil, placeholder: 'search', id: 'search' %>
-				<%= submit_tag "Ask to join", id: 'groups_join_submit' %>
-			<% end %>
-			<!-- lien vers la création d'un groupe -->
-			<%= button_to 'Create group', new_group_path, method: :get %>
-		</div>
-	</div>
+	
 	<!-- Corps du site avec visuel des groupes et fichiers -->
 	<div id="index_main">
-		<%= render "home" %>
+		<%= render "home", my_files: @my_files, files_shared_with_me: @files_shared_with_me %>
 	</div>
 </div>

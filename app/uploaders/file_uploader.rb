@@ -1,21 +1,36 @@
 class FileUploader < CarrierWave::Uploader::Base
 
-  # Include RMagick or MiniMagick support:
-  # include CarrierWave::RMagick
-  # include CarrierWave::MiniMagick
-  include CarrierWave::MiniMagick
-  # enelever le commentaire si onsouhaite avoir de grands formats d'images
-  # process resize_to_fit: [800, 800]
-
-  version :thumb do
-    process resize_to_fill: [100,100]
-  end
   # Choose what kind of storage to use for this uploader:
   storage :file
   # storage :fog
 
+  # Include RMagick or MiniMagick support:
+  # include CarrierWave::RMagick
+  include CarrierWave::MiniMagick
+
+  # Create different versions of your uploaded files:
+  version :thumb, if: :is_image_or_video? do
+    process resize_to_fit: [100, 100]
+  end
+
+  # transfo pdf/texte avec MiniMagick
+  version :pdf_thumb, if: :is_pdf? do
+    process :thumbnail_pdf
+  end
+
+  def thumbnail_pdf
+    manipulate! do |img|
+      img.format("png", 0)
+      img.resize("100x100")
+      img = yield(img) if block_given?
+      img
+    end
+  end
+
+  # redimentionne les images auto si non commenté, sans condition
+  # process resize_to_fit: [800, 800]
+
   # Override the directory where uploaded files will be stored.
-  # This is a sensible default for uploaders that are meant to be mounted:
   def store_dir
     "uploads/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
   end
@@ -35,11 +50,6 @@ class FileUploader < CarrierWave::Uploader::Base
   #   # do something
   # end
 
-  # Create different versions of your uploaded files:
-  # version :thumb do
-  #   process resize_to_fit: [50, 50]
-  # end
-
   # Add a white list of extensions which are allowed to be uploaded.
   # For images you might use something like this:
   # def extension_whitelist
@@ -51,5 +61,15 @@ class FileUploader < CarrierWave::Uploader::Base
   # def filename
   #   "something.jpg" if original_filename
   # end
+
+  private
+
+  def is_image_or_video?(file)
+     file.content_type.start_with?('image') || file.content_type.start_with?('video')
+  end
+
+  def is_pdf?(file)
+    file.content_type == "application/pdf"
+  end
 
 end

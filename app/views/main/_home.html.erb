@@ -1,17 +1,29 @@
-<div id="index_my_files">
-	<p>My saved files</p>
-	<%= link_to 'See all my files', media_path, class: "link_to_see_all_my_files" %>
-	<div id="uploaded">
-	<!-- affichage des fichiers que l'utilisateur a uploadé -->
-		<% current_user.media.each do |medium| %>
-			<%= render 'file_display', medium: medium %>
+<div id="home_my_files">
+	<p class="home_part_title">My saved files</p>
+		<% if search_my_files_ajax_uploaded_for_pagination_helper.empty? %>
+			<p class="home_no_file">You don't have any file yet</p>
+		<% else %>
+			<!-- affichage des fichiers que l'utilisateur a uploadé -->
+			<div id="uploaded">
+				<%= search_my_files_ajax_uploaded_for_pagination_helper %>
+			</div>
 		<% end %>
-	</div>
 	<%= link_to 'Add a file', new_medium_path, class: "btn btn-primary", method: :get %>
+	<div id="paginator_my_files">
+		<%= search_my_files_pagination_helper %>
+	</div>
 </div>
-<div id="index_last_files_shared_with_me">
-	<p>Last files shared with me</p>
-	<!-- affichage des fichiers partagés avec l'utilisateur, groupe + individuel -->
-	.....................................
-	.....................................
+<div id="home_last_files_shared_with_me">
+	<p class="home_part_title">Last files shared with me</p>
+	<% if search_in_files_shared_with_me_or_with_my_groups_ajax_shared_for_pagination_helper.empty? %>
+		<p class="home_no_file">Nobody as shared a file with you yet</p>
+	<% else %>
+		<!-- affichage des fichiers partagés avec l'utilisateur, groupe + individuel -->
+		<div id="shared_with_me">
+			<%= search_in_files_shared_with_me_or_with_my_groups_ajax_shared_for_pagination_helper %>
+		</div>
+	<% end %>
+	<div id="paginator_shared_files">
+		<%= search_in_files_shared_with_me_or_with_my_groups_pagination_helper %>
+	</div>
 </div>

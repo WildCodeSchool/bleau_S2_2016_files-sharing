@@ -2,8 +2,8 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
-# check si DOM ready
-jQuery ->
+$(document).on('turbolinks:load', ->
+
 	console.log("Groups:")
 	$.getJSON('/search_groups?term=', (data) ->
 		$.map(data, (item) ->
@@ -29,3 +29,10 @@ jQuery ->
 		if e.which == 13	# \n ASCII code
 			e.preventDefault()
 		)
+
+	#  faire apparaître le modal de groupes
+	$('#link_to_my_groups, .close_modal_link').click((event)->
+		event.preventDefault()
+		$('#modal_wrapper').fadeToggle()
+		)
+)
