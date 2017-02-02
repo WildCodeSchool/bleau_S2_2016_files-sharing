@@ -4,20 +4,17 @@
 
 $(document).on('turbolinks:load', ->
 
-	console.log("Groups:")
-	$.getJSON('/search_groups?term=', (data) ->
-		$.map(data, (item) ->
-			console.log((label: item.name, value: item.name, id: item.id))))
-
 	set_selected_group = (name, id) ->
 		console.log("Group = " + name)
 		$('#groups_join_submit').val('Ask to join group "' + name + '"')
+		# Rajouter la valeur dans le champs caché
 
 	# autocomplete pour la recherche de groups pour demander à le rejoindre
 	$('#searchgroups').autocomplete
 		source: (request, response) ->
 			$.getJSON('/search_groups?term=' + request.term, (data) ->
 				response($.map(data, (item) ->
+					console.log(item.name, item.id)
 					return(label: item.name, value: item.name, id: item.id))))
 		select:  (event, ui) ->
 			set_selected_group(ui.item.label, ui.item.id)
@@ -34,5 +31,5 @@ $(document).on('turbolinks:load', ->
 	$('#link_to_my_groups, .close_modal_link').click((event)->
 		event.preventDefault()
 		$('#modal_wrapper').fadeToggle()
-		)
+	)
 )

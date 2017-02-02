@@ -18,8 +18,8 @@
 			</div>
 		<% end %>
 		<!-- lien vers l'ajout de nouveaux groupes -->
-		<%= form_tag("/search_groups", method: "get", id: 'searchgroups') do |f| %>
-			<%= text_field_tag :search, nil, placeholder: 'search', id: 'search' %>
+		<%= form_tag("/search_groups", method: "get", id: 'searchgroupsform') do |f| %>
+			<%= text_field_tag :search, nil, placeholder: 'search', id: 'searchgroups' %>
 			<%= submit_tag "Ask to join", id: 'submit' %>
 		<% end %>
 		<!-- lien vers la création d'un groupe -->
