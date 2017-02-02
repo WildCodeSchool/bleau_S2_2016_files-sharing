@@ -6,7 +6,10 @@ class GroupsController < ApplicationController
   end
 
   def send_request
-    render # render index view
+    @request = UsersInGroup.new
+    @request.group = @group
+    @request.user = current_user
+    @request.save
   end
   # GET /groups
   # GET /groups.json
